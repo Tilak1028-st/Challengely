@@ -12,7 +12,7 @@ struct ShareSheetView: View {
                 // Enhanced gradient background
                 LinearGradient(
                     gradient: Gradient(colors: [
-                        Color("PrimaryColor").opacity(0.08),
+                        Color("AppPrimaryColor").opacity(0.08),
                         Color("Accent").opacity(0.05),
                         Color("PrimaryDark").opacity(0.03)
                     ]),
@@ -99,7 +99,7 @@ struct ShareSheetView: View {
                     Button("Done") {
                         dismiss()
                     }
-                    .foregroundColor(Color("PrimaryColor"))
+                    .foregroundColor(Color("AppPrimaryColor"))
                     .fontWeight(.semibold)
                 }
             }

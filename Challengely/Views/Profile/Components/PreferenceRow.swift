@@ -32,13 +32,13 @@ struct PreferenceRow: View {
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.title3)
-                        .foregroundColor(Color("PrimaryColor"))
+                        .foregroundColor(Color("AppPrimaryColor"))
                 }
             }
             .padding(12)
             .background(
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(isSelected ? Color("PrimaryColor").opacity(0.1) : Color("Card").opacity(0.5))
+                    .fill(isSelected ? Color("AppPrimaryColor").opacity(0.1) : Color("Card").opacity(0.5))
             )
         }
         .buttonStyle(PlainButtonStyle())

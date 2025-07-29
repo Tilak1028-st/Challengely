@@ -19,7 +19,7 @@ struct InterestCard: View {
         switch interest {
         case .fitness: return Color("ChallengeRed")
         case .creativity: return Color("PrimaryDark")
-        case .mindfulness: return Color("PrimaryColor")
+        case .mindfulness: return Color("AppPrimaryColor")
         case .learning: return Color("Success")
         case .social: return Color("Accent")
         }

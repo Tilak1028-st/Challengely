@@ -50,7 +50,7 @@ struct AchievementsView: View {
                 title: "Challenge Champion",
                 description: "Completed 50 challenges",
                 icon: "crown.fill",
-                color: Color("PrimaryColor"),
+                color: Color("AppPrimaryColor"),
                 isEarned: true
             ))
         }

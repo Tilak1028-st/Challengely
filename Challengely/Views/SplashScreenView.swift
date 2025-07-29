@@ -30,7 +30,7 @@ struct SplashScreenView: View {
             // App theme gradient background (matching other screens)
             LinearGradient(
                 gradient: Gradient(colors: [
-                    Color("PrimaryColor").opacity(0.15),
+                    Color("AppPrimaryColor").opacity(0.15),
                     Color("Accent").opacity(0.10),
                     Color("PrimaryDark").opacity(0.08),
                     Color("Background").opacity(0.95)
@@ -48,7 +48,7 @@ struct SplashScreenView: View {
                         .fill(
                             LinearGradient(
                                 colors: [
-                                    Color("PrimaryColor").opacity(0.2 - Double(index) * 0.05),
+                                    Color("AppPrimaryColor").opacity(0.2 - Double(index) * 0.05),
                                     Color("Accent").opacity(0.15 - Double(index) * 0.03),
                                     Color("Success").opacity(0.1 - Double(index) * 0.02)
                                 ],
@@ -70,7 +70,7 @@ struct SplashScreenView: View {
                     Group {
                         if index % 3 == 0 {
                             Circle()
-                                .fill(Color("PrimaryColor").opacity(0.08))
+                                .fill(Color("AppPrimaryColor").opacity(0.08))
                                 .frame(width: CGFloat.random(in: 20...60), height: CGFloat.random(in: 20...60))
                         } else if index % 3 == 1 {
                             RoundedRectangle(cornerRadius: 8)
@@ -125,7 +125,7 @@ struct SplashScreenView: View {
                 ZStack {
                     // Pulse ring with app theme color
                     Circle()
-                        .stroke(Color("PrimaryColor").opacity(0.4), lineWidth: 2)
+                        .stroke(Color("AppPrimaryColor").opacity(0.4), lineWidth: 2)
                         .frame(width: 120, height: 120)
                         .scaleEffect(showPulse ? 1.5 : 1.0)
                         .opacity(showPulse ? 0.0 : 1.0)
@@ -135,21 +135,21 @@ struct SplashScreenView: View {
                     ZStack {
                         // Trophy base
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(Color("PrimaryColor"))
+                            .fill(Color("AppPrimaryColor"))
                             .frame(width: 40, height: 60)
                             .offset(y: 15)
                         
                         // Trophy handles
                         ForEach(0..<2) { index in
                             RoundedRectangle(cornerRadius: 4)
-                                .fill(Color("PrimaryColor"))
+                                .fill(Color("AppPrimaryColor"))
                                 .frame(width: 8, height: 20)
                                 .offset(x: index == 0 ? -24 : 24, y: 5)
                         }
                         
                         // Trophy top
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color("PrimaryColor"))
+                            .fill(Color("AppPrimaryColor"))
                             .frame(width: 50, height: 35)
                             .offset(y: -10)
                         
@@ -184,10 +184,10 @@ struct SplashScreenView: View {
                     .scaleEffect(logoScale)
                     .opacity(logoOpacity)
                     .rotationEffect(.degrees(logoRotation))
-                    .shadow(color: Color("PrimaryColor").opacity(0.3), radius: 10, x: 0, y: 5)
+                    .shadow(color: Color("AppPrimaryColor").opacity(0.3), radius: 10, x: 0, y: 5)
                     .overlay(
                         Circle()
-                            .fill(Color("PrimaryColor").opacity(0.2))
+                            .fill(Color("AppPrimaryColor").opacity(0.2))
                             .blur(radius: showGlow ? 20 : 0)
                             .scaleEffect(showGlow ? 1.5 : 0.8)
                             .opacity(showGlow ? 0.6 : 0.0)
@@ -201,7 +201,7 @@ struct SplashScreenView: View {
                     .foregroundColor(Color("TextLabel"))
                     .opacity(titleOpacity)
                     .offset(y: titleOffset)
-                    .shadow(color: Color("PrimaryColor").opacity(0.2), radius: 5, x: 0, y: 2)
+                    .shadow(color: Color("AppPrimaryColor").opacity(0.2), radius: 5, x: 0, y: 2)
                 
                 // Subtitle with app theme styling
                 Text("Transform your daily routine")
@@ -210,7 +210,7 @@ struct SplashScreenView: View {
                     .opacity(subtitleOpacity)
                     .offset(y: subtitleOffset)
                     .multilineTextAlignment(.center)
-                    .shadow(color: Color("PrimaryColor").opacity(0.1), radius: 3, x: 0, y: 1)
+                    .shadow(color: Color("AppPrimaryColor").opacity(0.1), radius: 3, x: 0, y: 1)
                 
                 Spacer()
                 
@@ -218,7 +218,7 @@ struct SplashScreenView: View {
                 HStack(spacing: 8) {
                     ForEach(0..<3, id: \.self) { index in
                         Circle()
-                            .fill(Color("PrimaryColor"))
+                            .fill(Color("AppPrimaryColor"))
                             .frame(width: 8, height: 8)
                             .scaleEffect(showPulse ? 1.2 : 0.8)
                             .opacity(showPulse ? 0.6 : 1.0)

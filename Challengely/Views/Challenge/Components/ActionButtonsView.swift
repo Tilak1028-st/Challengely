@@ -30,9 +30,9 @@ struct ActionButtonsView: View {
                     .padding(.vertical, 18)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("PrimaryColor"))
+                            .fill(Color("AppPrimaryColor"))
                     )
-                    .shadow(color: Color("PrimaryColor").opacity(0.3), radius: 8, x: 0, y: 4)
+                    .shadow(color: Color("AppPrimaryColor").opacity(0.3), radius: 8, x: 0, y: 4)
                 }
                 .buttonStyle(PlainButtonStyle())
             } else if !isAccepted {

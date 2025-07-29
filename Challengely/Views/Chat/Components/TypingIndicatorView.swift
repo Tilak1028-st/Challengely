@@ -23,7 +23,7 @@ struct TypingIndicatorView: View {
                 .background(
                     Circle()
                         .fill(LinearGradient(
-                            gradient: Gradient(colors: [Color("PrimaryColor"), Color("Accent")]),
+                            gradient: Gradient(colors: [Color("AppPrimaryColor"), Color("Accent")]),
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ))

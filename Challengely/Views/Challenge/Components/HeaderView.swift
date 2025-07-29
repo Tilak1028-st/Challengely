@@ -24,7 +24,7 @@ struct HeaderView: View {
                     HStack(alignment: .bottom, spacing: 4) {
                         Text("\(dataManager.userProfile.currentStreak)")
                             .font(.system(size: 28, weight: .bold, design: .rounded))
-                            .foregroundColor(Color("PrimaryColor"))
+                            .foregroundColor(Color("AppPrimaryColor"))
                         
                         Text("days")
                             .font(.subheadline)
@@ -44,7 +44,7 @@ struct HeaderView: View {
                     Text("\(dataManager.userProfile.totalChallengesCompleted)")
                         .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(Color("PrimaryColor"))
+                        .foregroundColor(Color("AppPrimaryColor"))
                 }
             }
             
@@ -60,7 +60,7 @@ struct HeaderView: View {
                     Text("\(dataManager.userProfile.currentStreak)/\(max(dataManager.userProfile.longestStreak, 1))")
                         .font(.caption)
                         .fontWeight(.medium)
-                        .foregroundColor(Color("PrimaryColor"))
+                        .foregroundColor(Color("AppPrimaryColor"))
                 }
                 
                 ProgressView(value: Double(dataManager.userProfile.currentStreak), total: Double(max(dataManager.userProfile.longestStreak, 1)))

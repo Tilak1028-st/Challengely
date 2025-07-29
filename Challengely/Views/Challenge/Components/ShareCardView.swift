@@ -42,7 +42,7 @@ struct ShareCardView: View {
                         Text("\(challenge.estimatedTime)")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("PrimaryColor"))
+                            .foregroundColor(Color("AppPrimaryColor"))
                         
                         Text("minutes")
                             .font(.caption)
@@ -80,7 +80,7 @@ struct ShareCardView: View {
         .background(
             LinearGradient(
                 gradient: Gradient(colors: [
-                    Color("PrimaryColor").opacity(0.08),
+                    Color("AppPrimaryColor").opacity(0.08),
                     Color("Accent").opacity(0.05),
                     Color("PrimaryDark").opacity(0.03)
                 ]),
@@ -90,7 +90,7 @@ struct ShareCardView: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(Color("PrimaryColor").opacity(0.2), lineWidth: 2)
+                .stroke(Color("AppPrimaryColor").opacity(0.2), lineWidth: 2)
         )
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .onAppear {

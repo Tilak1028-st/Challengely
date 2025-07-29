@@ -11,7 +11,7 @@ struct ConfettiView: View {
     @State private var textScale: CGFloat = 0.5
     
     let colors: [Color] = [
-        Color("PrimaryColor"),
+        Color("AppPrimaryColor"),
         Color("Accent"),
         Color("Success"),
         Color("ConfettiYellow"),
@@ -31,7 +31,7 @@ struct ConfettiView: View {
             // Celebration background glow
             RadialGradient(
                 gradient: Gradient(colors: [
-                    Color("PrimaryColor").opacity(0.4),
+                    Color("AppPrimaryColor").opacity(0.4),
                     Color("Accent").opacity(0.3),
                     Color("Success").opacity(0.2),
                     Color.clear

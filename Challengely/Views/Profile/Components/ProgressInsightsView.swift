@@ -78,7 +78,7 @@ struct ProgressInsightsView: View {
                                 title: "Most Challenging Category",
                                 value: "Mindfulness",
                                 icon: "brain.head.profile",
-                                color: Color("PrimaryColor")
+                                color: Color("AppPrimaryColor")
                             )
                         }
                     }

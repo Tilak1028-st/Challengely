@@ -15,7 +15,7 @@ struct WelcomeMessageView: View {
             // Assistant avatar
             Image(systemName: "robot")
                 .font(.system(size: 50, weight: .semibold))
-                .foregroundColor(Color("PrimaryColor"))
+                .foregroundColor(Color("AppPrimaryColor"))
                 .scaleEffect(animateWelcome ? 1.1 : 1.0)
                 .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: animateWelcome)
             

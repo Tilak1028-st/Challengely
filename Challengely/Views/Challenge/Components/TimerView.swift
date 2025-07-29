@@ -20,7 +20,7 @@ struct TimerView: View {
             
             Text(timeString)
                 .font(.system(size: 28, weight: .bold, design: .monospaced))
-                .foregroundColor(Color("PrimaryColor"))
+                .foregroundColor(Color("AppPrimaryColor"))
                 .scaleEffect(pulse ? 1.05 : 1.0)
                 .animation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: pulse)
         }
@@ -28,10 +28,10 @@ struct TimerView: View {
         .padding(.horizontal, 20)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color("PrimaryColor").opacity(0.1))
+                .fill(Color("AppPrimaryColor").opacity(0.1))
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color("PrimaryColor").opacity(0.2), lineWidth: 1)
+                        .stroke(Color("AppPrimaryColor").opacity(0.2), lineWidth: 1)
                 )
         )
         .onAppear {

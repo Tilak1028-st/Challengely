@@ -19,7 +19,7 @@ struct PrimaryButtonStyle: ButtonStyle {
                 RoundedRectangle(cornerRadius: 12)
                     .fill(
                         LinearGradient(
-                            gradient: Gradient(colors: [Color("PrimaryColor"), Color("Accent")]),
+                            gradient: Gradient(colors: [Color("AppPrimaryColor"), Color("Accent")]),
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -27,7 +27,7 @@ struct PrimaryButtonStyle: ButtonStyle {
                     .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
             )
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
-                            .shadow(color: Color("PrimaryColor").opacity(0.3), radius: 8, x: 0, y: 4)
+                            .shadow(color: Color("AppPrimaryColor").opacity(0.3), radius: 8, x: 0, y: 4)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
     }
 }

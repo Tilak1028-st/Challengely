@@ -23,7 +23,7 @@ struct MessageBubbleView: View {
                         .padding(.vertical, 12)
                         .background(
                             RoundedRectangle(cornerRadius: 18)
-                                .fill(Color("PrimaryColor"))
+                                .fill(Color("AppPrimaryColor"))
                         )
                     
                     // User avatar
@@ -50,7 +50,7 @@ struct MessageBubbleView: View {
                         .background(
                             Circle()
                                 .fill(LinearGradient(
-                                    gradient: Gradient(colors: [Color("PrimaryColor"), Color("Accent")]),
+                                    gradient: Gradient(colors: [Color("AppPrimaryColor"), Color("Accent")]),
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ))

@@ -30,7 +30,7 @@ struct UserProfile: Codable {
             switch self {
             case .fitness: return "ChallengeRed"
             case .creativity: return "PrimaryDark"
-            case .mindfulness: return "PrimaryColor"
+            case .mindfulness: return "AppPrimaryColor"
             case .learning: return "Success"
             case .social: return "Accent"
             }

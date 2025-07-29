@@ -20,7 +20,7 @@ struct ChallengeCardView: View {
         switch challenge.category {
         case .fitness: return Color("ChallengeRed")
         case .creativity: return Color("PrimaryDark")
-        case .mindfulness: return Color("PrimaryColor")
+        case .mindfulness: return Color("AppPrimaryColor")
         case .learning: return Color("Success")
         case .social: return Color("Accent")
         }
@@ -108,7 +108,7 @@ struct ChallengeCardView: View {
                         icon: "clock.fill",
                         title: "Time",
                         value: "\(challenge.estimatedTime) min",
-                        color: Color("PrimaryColor")
+                        color: Color("AppPrimaryColor")
                     )
                     
                     DetailItem(

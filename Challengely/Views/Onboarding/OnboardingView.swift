@@ -16,7 +16,7 @@ struct OnboardingView: View {
             // Enhanced gradient background
             LinearGradient(
                 gradient: Gradient(colors: [
-                    Color("PrimaryColor").opacity(0.1),
+                    Color("AppPrimaryColor").opacity(0.1),
                     Color("Accent").opacity(0.1),
                     Color("PrimaryDark").opacity(0.05)
                 ]),

@@ -23,7 +23,7 @@ struct MainTabView: View {
                     Text("Profile")
                 }
         }
-        .accentColor(Color("PrimaryColor"))
+        .accentColor(Color("AppPrimaryColor"))
         .onAppear {
             // Ensure tab bar has proper background
             let appearance = UITabBarAppearance()

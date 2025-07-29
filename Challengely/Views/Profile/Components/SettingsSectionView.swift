@@ -32,7 +32,7 @@ struct SettingsSectionView: View {
                     icon: "gear",
                     title: "Preferences",
                     subtitle: "Customize your experience",
-                    color: Color("PrimaryColor"),
+                    color: Color("AppPrimaryColor"),
                     action: { showingPreferences = true }
                 )
                 

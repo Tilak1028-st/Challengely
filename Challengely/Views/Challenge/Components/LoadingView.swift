@@ -14,7 +14,7 @@ struct LoadingView: View {
         VStack(spacing: 20) {
             ProgressView()
                 .scaleEffect(1.5)
-                .tint(Color("PrimaryColor"))
+                .tint(Color("AppPrimaryColor"))
             
             Text("Loading your challenge...")
                 .font(.title3)

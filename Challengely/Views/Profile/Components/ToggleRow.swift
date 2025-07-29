@@ -28,7 +28,7 @@ struct ToggleRow: View {
             Spacer()
             
             Toggle("", isOn: $isOn)
-                .toggleStyle(SwitchToggleStyle(tint: Color("PrimaryColor")))
+                .toggleStyle(SwitchToggleStyle(tint: Color("AppPrimaryColor")))
         }
         .padding(12)
         .background(

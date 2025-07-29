@@ -48,7 +48,7 @@ struct StatsGridView: View {
                 value: "\(calculateSuccessRate())%",
                 subtitle: "completion",
                 icon: "chart.line.uptrend.xyaxis",
-                color: Color("PrimaryColor"),
+                color: Color("AppPrimaryColor"),
                 animate: animateStats
             )
         }

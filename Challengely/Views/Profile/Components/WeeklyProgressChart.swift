@@ -13,7 +13,7 @@ struct WeeklyProgressChart: View {
             ForEach(0..<7, id: \.self) { day in
                 VStack(spacing: 8) {
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(Color("PrimaryColor").opacity(0.3))
+                        .fill(Color("AppPrimaryColor").opacity(0.3))
                         .frame(width: 30, height: CGFloat.random(in: 20...80))
                     
                     Text(["M", "T", "W", "T", "F", "S", "S"][day])

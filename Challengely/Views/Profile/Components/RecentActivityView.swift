@@ -25,7 +25,7 @@ struct RecentActivityView: View {
                         title: message.isFromUser ? "You sent a message" : "Assistant responded",
                         subtitle: message.content.prefix(50) + (message.content.count > 50 ? "..." : ""),
                         time: message.timestamp,
-                        color: message.isFromUser ? Color("Accent") : Color("PrimaryColor")
+                        color: message.isFromUser ? Color("Accent") : Color("AppPrimaryColor")
                     )
                 }
                 

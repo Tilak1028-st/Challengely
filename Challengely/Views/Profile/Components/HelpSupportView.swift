@@ -61,7 +61,7 @@ struct HelpSupportView: View {
                                 icon: "envelope.fill",
                                 title: "Email Support",
                                 subtitle: "support@challengely.com",
-                                color: Color("PrimaryColor")
+                                color: Color("AppPrimaryColor")
                             )
                             
                             ContactRow(

@@ -40,7 +40,7 @@ struct MultiTextField: UIViewRepresentable {
         // Only update if the text has actually changed and is not empty
         if uiView.text != text && !text.isEmpty {
             uiView.text = text
-            uiView.textColor = UIColor.black
+            uiView.textColor = UIColor.label
         }
     }
     
@@ -55,7 +55,7 @@ struct MultiTextField: UIViewRepresentable {
         func textViewDidBeginEditing(_ textView: UITextView) {
             if textView.text == "Type Something" {
                 textView.text = ""
-                textView.textColor = .black
+                textView.textColor = UIColor.label
             }
         }
         
