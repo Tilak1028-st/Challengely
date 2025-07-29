@@ -1,5 +1,13 @@
+//
+//  ChatView.swift
+//  Challengely
+//
+//  Created by Tilak Shakya on 29/07/25.
+//
+
 import SwiftUI
 
+/// Main chat interface for interacting with the Challenge Assistant
 struct ChatView: View {
     @EnvironmentObject var dataManager: DataManager
     @StateObject private var chatService = ChatService()
@@ -14,13 +22,13 @@ struct ChatView: View {
     @FocusState private var isInputFocused: Bool
     
     private let maxInputHeight: CGFloat = 120
-    private let characterLimit = 500
+    private let characterLimit = Constants.Limits.messageLength
     private let sendCooldown: TimeInterval = 1.0 // 1 second cooldown between messages
     
     var body: some View {
         NavigationView {
             ZStack {
-                // Enhanced gradient background
+                // Background gradient
                 LinearGradient(
                     gradient: Gradient(colors: [
                         Color("AppPrimaryColor").opacity(0.08),
@@ -36,11 +44,11 @@ struct ChatView: View {
                 }
                 
                 VStack(spacing: 0) {
-                    // Messages list
+                    // Messages list with auto-scroll
                     ScrollViewReader { proxy in
                         ScrollView {
                             LazyVStack(spacing: 16) {
-                                // Welcome message
+                                // Welcome message for empty chat
                                 if dataManager.chatMessages.isEmpty {
                                     WelcomeMessageView()
                                         .id("welcome")
@@ -84,9 +92,7 @@ struct ChatView: View {
                         dismissKeyboard()
                     }
                     
-
-                    
-                    // Suggestions
+                    // Quick suggestions (hidden when typing)
                     if dataManager.chatMessages.isEmpty && !isUserTyping {
                         SuggestionsView(
                             suggestions: chatService.getSuggestions(for: dataManager.currentChallenge),
@@ -101,7 +107,7 @@ struct ChatView: View {
                         .animation(.spring(response: 0.5, dampingFraction: 0.7), value: isUserTyping)
                     }
                     
-                    // Input area with character counter
+                    // Input area
                     ChatInputView(
                         messageText: $messageText,
                         isExpanded: $isInputExpanded,
@@ -123,7 +129,7 @@ struct ChatView: View {
                                 isUserTyping = isNowTyping
                             }
                             
-                            // Haptic feedback
+                            // Haptic feedback for typing state change
                             if isNowTyping {
                                 HapticManager.shared.impact(style: .light)
                             } else {
@@ -133,11 +139,11 @@ struct ChatView: View {
                     }
                 }
             }
-            .navigationTitle("Challenge Assistant")
+            .navigationTitle(Constants.Navigation.assistant)
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Clear") {
+                    Button(Constants.Button.clear) {
                         dataManager.clearChatMessages()
                     }
                     .disabled(dataManager.chatMessages.isEmpty)
@@ -153,6 +159,8 @@ struct ChatView: View {
             removeAppStateObservers()
         }
     }
+    
+    // MARK: - Message Handling
     
     private func sendMessage(_ text: String) {
         let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -184,7 +192,7 @@ struct ChatView: View {
         isInputExpanded = false
         isInputFocused = false
         
-        // Show typing indicator with realistic delay
+        // Show typing indicator
         chatService.isTyping = true
         
         // Start cooldown timer
@@ -223,6 +231,7 @@ struct ChatView: View {
         HapticManager.shared.impact(style: .light)
     }
     
+    /// Simulates word-by-word streaming response for realistic AI interaction
     private func simulateStreamingResponse(_ fullResponse: String) {
         let words = fullResponse.components(separatedBy: " ")
         var currentResponse = ""
@@ -254,6 +263,8 @@ struct ChatView: View {
             }
         }
     }
+    
+    // MARK: - Keyboard Management
     
     private func setupKeyboardObservers() {
         NotificationCenter.default.addObserver(
@@ -296,6 +307,8 @@ struct ChatView: View {
             isUserTyping = false
         }
     }
+    
+    // MARK: - App State Management
     
     private func setupAppStateObservers() {
         NotificationCenter.default.addObserver(

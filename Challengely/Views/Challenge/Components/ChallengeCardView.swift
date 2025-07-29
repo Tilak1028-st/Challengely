@@ -68,18 +68,18 @@ struct ChallengeCardView: View {
                     .transition(.opacity.combined(with: .scale))
             } else {
                 VStack(spacing: 8) {
-                    Image(systemName: "eye.slash.fill")
+                    Image(systemName: Constants.SystemImages.eyeSlash)
                         .font(.title2)
                         .foregroundColor(Color("Subtext"))
                         .scaleEffect(animateCard ? 1.1 : 1.0)
                         .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: animateCard)
                     
-                    Text("Challenge Hidden")
+                    Text(Constants.Challenge.challengeHidden)
                         .font(.headline)
                         .fontWeight(.semibold)
                         .foregroundColor(Color("Subtext"))
                     
-                    Text("Tap 'Reveal Challenge' to see today's task")
+                    Text(Constants.Challenge.tapToReveal)
                         .font(.caption)
                         .foregroundColor(Color("Subtext"))
                         .multilineTextAlignment(.center)
@@ -105,15 +105,15 @@ struct ChallengeCardView: View {
             if isRevealed {
                 HStack(spacing: 30) {
                     DetailItem(
-                        icon: "clock.fill",
-                        title: "Time",
-                        value: "\(challenge.estimatedTime) min",
+                        icon: Constants.SystemImages.clock,
+                        title: Constants.Challenge.timeRemaining,
+                        value: "\(challenge.estimatedTime) \(Constants.Time.minutes)",
                         color: Color("AppPrimaryColor")
                     )
                     
                     DetailItem(
-                        icon: "gauge",
-                        title: "Difficulty",
+                        icon: Constants.SystemImages.gauge,
+                        title: Constants.Challenge.difficulty,
                         value: challenge.difficulty.rawValue,
                         color: difficultyColor
                     )
@@ -130,11 +130,11 @@ struct ChallengeCardView: View {
             // Completion status
             if isCompleted {
                 HStack(spacing: 12) {
-                    Image(systemName: "checkmark.circle.fill")
+                    Image(systemName: Constants.SystemImages.success)
                         .font(.title2)
                         .foregroundColor(Color("Success"))
                     
-                    Text("Challenge Completed! 🎉")
+                    Text(Constants.Success.challengeCompleted)
                         .font(.headline)
                         .fontWeight(.semibold)
                         .foregroundColor(Color("Success"))

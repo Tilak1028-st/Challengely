@@ -14,12 +14,12 @@ struct InterestsStepView: View {
     var body: some View {
             VStack(spacing: 28) {
                 VStack(spacing: 12) {
-                    Text("What excites you? 🎯")
+                    Text(Constants.Onboarding.interestsTitle)
                         .font(.title2)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                 
-                Text("Tap what excites you to get personalized challenges")
+                Text(Constants.Onboarding.interestsSubtitle)
                     .font(.caption)
                     .foregroundColor(Color("Subtext"))
                     .multilineTextAlignment(.center)

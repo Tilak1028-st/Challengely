@@ -19,9 +19,9 @@ struct ActionButtonsView: View {
             if !isRevealed {
                 Button(action: onReveal) {
                     HStack {
-                        Image(systemName: "eye.fill")
+                        Image(systemName: Constants.SystemImages.eye)
                             .font(.title3)
-                        Text("Reveal Challenge")
+                        Text(Constants.Button.reveal)
                             .font(.headline)
                             .fontWeight(.semibold)
                     }
@@ -38,9 +38,9 @@ struct ActionButtonsView: View {
             } else if !isAccepted {
                 Button(action: onAccept) {
                     HStack {
-                        Image(systemName: "checkmark.circle.fill")
+                        Image(systemName: Constants.SystemImages.checkmark)
                             .font(.title3)
-                        Text("Accept Challenge")
+                        Text(Constants.Button.accept)
                             .font(.headline)
                             .fontWeight(.semibold)
                     }
@@ -57,9 +57,9 @@ struct ActionButtonsView: View {
             } else {
                 Button(action: onComplete) {
                     HStack {
-                        Image(systemName: "trophy.fill")
+                        Image(systemName: Constants.SystemImages.trophy)
                             .font(.title3)
-                        Text("Complete Challenge")
+                        Text(Constants.Button.complete)
                             .font(.headline)
                             .fontWeight(.semibold)
                     }

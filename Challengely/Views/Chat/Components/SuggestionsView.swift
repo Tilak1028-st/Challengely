@@ -14,7 +14,7 @@ struct SuggestionsView: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            Text("Quick Questions")
+            Text(Constants.Chat.quickQuestions)
                 .font(.headline)
                 .fontWeight(.semibold)
                 .foregroundColor(Color("TextLabel"))

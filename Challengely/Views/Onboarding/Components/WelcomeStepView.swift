@@ -20,7 +20,7 @@ struct WelcomeStepView: View {
     var body: some View {
         VStack(spacing: 30) {
             // Animated icon
-            Image(systemName: "star.circle.fill")
+            Image(systemName: Constants.SystemImages.welcomeIcon)
                 .font(.system(size: 60, weight: .medium))
                 .foregroundColor(.primary)
                 .scaleEffect(animateIcon ? 1.1 : 1.0)
@@ -31,12 +31,12 @@ struct WelcomeStepView: View {
                 }
             
             VStack(spacing: 16) {
-                Text("Welcome to Challengely ✨")
+                Text(Constants.Onboarding.welcomeTitle)
                     .font(.title)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                 
-                Text("Your daily companion for personal growth and meaningful challenges")
+                Text(Constants.Onboarding.welcomeSubtitle)
                     .font(.body)
                     .foregroundColor(.subtext)
                     .multilineTextAlignment(.center)

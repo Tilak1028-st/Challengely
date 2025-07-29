@@ -1,5 +1,13 @@
+//
+//  MainTabView.swift
+//  Challengely
+//
+//  Created by Tilak Shakya on 29/07/25.
+//
+
 import SwiftUI
 
+/// MainTabView serves as the primary navigation container for the Challengely app
 struct MainTabView: View {
     @EnvironmentObject var dataManager: DataManager
     
@@ -7,25 +15,25 @@ struct MainTabView: View {
         TabView {
             ChallengeView()
                 .tabItem {
-                    Image(systemName: "target")
-                    Text("Challenge")
+                    Image(systemName: Constants.SystemImages.challengeTab)
+                    Text(Constants.Tab.challenge)
                 }
             
             ChatView()
                 .tabItem {
-                    Image(systemName: "message")
-                    Text("Assistant")
+                    Image(systemName: Constants.SystemImages.assistantTab)
+                    Text(Constants.Tab.assistant)
                 }
             
             ProfileView()
                 .tabItem {
-                    Image(systemName: "person.circle")
-                    Text("Profile")
+                    Image(systemName: Constants.SystemImages.profileTab)
+                    Text(Constants.Tab.profile)
                 }
         }
         .accentColor(Color("AppPrimaryColor"))
         .onAppear {
-            // Ensure tab bar has proper background
+            // Configure tab bar appearance for consistent styling
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
             appearance.backgroundColor = UIColor.systemBackground

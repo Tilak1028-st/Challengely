@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+/// SplashScreenView provides an engaging launch experience with animated elements
 struct SplashScreenView: View {
+    // MARK: - Animation State Properties
+    
     @State private var logoScale: CGFloat = 0.3
     @State private var logoOpacity: Double = 0.0
     @State private var titleOpacity: Double = 0.0
@@ -27,7 +30,7 @@ struct SplashScreenView: View {
     
     var body: some View {
         ZStack {
-            // App theme gradient background (matching other screens)
+            // Background gradient
             LinearGradient(
                 gradient: Gradient(colors: [
                     Color("AppPrimaryColor").opacity(0.15),
@@ -40,9 +43,9 @@ struct SplashScreenView: View {
             )
             .ignoresSafeArea()
             
-            // Animated wave background with app theme colors
+            // Animated background elements
             ZStack {
-                // Multiple wave layers with app colors
+                // Wave layers
                 ForEach(0..<3) { index in
                     WaveShape(frequency: 1.5 + Double(index) * 0.5, amplitude: 50 + CGFloat(index) * 20)
                         .fill(
@@ -65,7 +68,7 @@ struct SplashScreenView: View {
                         )
                 }
                 
-                // Floating geometric shapes with app theme colors
+                // Floating geometric shapes
                 ForEach(0..<8) { index in
                     Group {
                         if index % 3 == 0 {
@@ -121,9 +124,9 @@ struct SplashScreenView: View {
             VStack(spacing: 30) {
                 Spacer()
                 
-                // Main logo with animations
+                // Main logo with trophy design
                 ZStack {
-                    // Pulse ring with app theme color
+                    // Pulse ring
                     Circle()
                         .stroke(Color("AppPrimaryColor").opacity(0.4), lineWidth: 2)
                         .frame(width: 120, height: 120)
@@ -131,7 +134,7 @@ struct SplashScreenView: View {
                         .opacity(showPulse ? 0.0 : 1.0)
                         .animation(.easeOut(duration: 2.0).repeatForever(autoreverses: false), value: showPulse)
                     
-                    // Animated trophy/achievement icon with app theme
+                    // Trophy icon
                     ZStack {
                         // Trophy base
                         RoundedRectangle(cornerRadius: 8)
@@ -153,7 +156,7 @@ struct SplashScreenView: View {
                             .frame(width: 50, height: 35)
                             .offset(y: -10)
                         
-                        // Trophy star with app theme color
+                        // Star on top
                         Image(systemName: "star.fill")
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(Color("ConfettiYellow"))
@@ -162,7 +165,7 @@ struct SplashScreenView: View {
                             .rotationEffect(.degrees(showGlow ? 360 : 0))
                             .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: showGlow)
                         
-                        // Floating particles around trophy with app colors
+                        // Orbiting particles
                         ForEach(0..<6) { index in
                             Circle()
                                 .fill(Color("Accent"))
@@ -195,16 +198,16 @@ struct SplashScreenView: View {
                     )
                 }
                 
-                // App title with app theme styling
-                Text("Challengely")
+                // App title
+                Text(Constants.App.name)
                     .font(.system(size: 36, weight: .bold, design: .rounded))
                     .foregroundColor(Color("TextLabel"))
                     .opacity(titleOpacity)
                     .offset(y: titleOffset)
                     .shadow(color: Color("AppPrimaryColor").opacity(0.2), radius: 5, x: 0, y: 2)
                 
-                // Subtitle with app theme styling
-                Text("Transform your daily routine")
+                // App subtitle
+                Text(Constants.App.tagline)
                     .font(.system(size: 18, weight: .medium))
                     .foregroundColor(Color("Subtext"))
                     .opacity(subtitleOpacity)
@@ -214,7 +217,7 @@ struct SplashScreenView: View {
                 
                 Spacer()
                 
-                // Loading indicator with app theme colors
+                // Loading indicator
                 HStack(spacing: 8) {
                     ForEach(0..<3, id: \.self) { index in
                         Circle()
@@ -239,8 +242,10 @@ struct SplashScreenView: View {
         }
     }
     
+    // MARK: - Animation Control
+    
     private func startAnimations() {
-        // Start pulse animation
+        // Start continuous animations
         showPulse = true
         showGlow = true
         animateWaves = true
@@ -248,47 +253,45 @@ struct SplashScreenView: View {
         // Initial haptic feedback
         HapticManager.shared.impact(style: .light)
         
-        // Animate logo entrance with rotation
+        // Logo entrance animation
         withAnimation(.spring(response: 0.8, dampingFraction: 0.6, blendDuration: 0.3).delay(0.2)) {
             logoScale = 1.0
             logoOpacity = 1.0
             logoRotation = 360.0
         }
         
-        // Logo haptic feedback
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             HapticManager.shared.impact(style: .medium)
         }
         
-        // Animate title entrance with slide
+        // Title entrance animation
         withAnimation(.spring(response: 0.8, dampingFraction: 0.7).delay(0.6)) {
             titleOpacity = 1.0
             titleOffset = 0
         }
         
-        // Title haptic feedback
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
             HapticManager.shared.impact(style: .light)
         }
         
-        // Animate subtitle entrance with slide
+        // Subtitle entrance animation
         withAnimation(.spring(response: 0.8, dampingFraction: 0.7).delay(0.9)) {
             subtitleOpacity = 1.0
             subtitleOffset = 0
         }
         
-        // Animate particles
+        // Particle animations
         withAnimation(.easeInOut(duration: 1.0).delay(1.2)) {
             particlesOpacity = 1.0
             particlesScale = 1.0
             animateParticles = true
         }
         
-        // Complete splash screen after animations
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
-            // Final haptic feedback
+        // Complete splash screen after 3.5 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + Constants.Animation.splash) {
             HapticManager.shared.notification(type: .success)
             
+            // Fade-out animation
             withAnimation(.easeInOut(duration: 0.8)) {
                 logoOpacity = 0.0
                 titleOpacity = 0.0
@@ -311,7 +314,8 @@ struct SplashScreenView: View {
     }
 }
 
-// Custom wave shape for animated background
+// MARK: - Custom Shapes
+
 struct WaveShape: Shape {
     let frequency: Double
     let amplitude: CGFloat
@@ -339,7 +343,6 @@ struct WaveShape: Shape {
     }
 }
 
-// Triangle shape for geometric elements
 struct SplashTriangle: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()

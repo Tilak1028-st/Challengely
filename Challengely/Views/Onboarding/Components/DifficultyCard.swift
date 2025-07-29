@@ -40,7 +40,7 @@ struct DifficultyCard: View {
                 
                 Spacer()
                 
-                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                Image(systemName: isSelected ? Constants.SystemImages.success : "circle")
                     .font(.title3)
                     .foregroundColor(isSelected ? .white : difficultyColor)
             }

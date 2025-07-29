@@ -1,7 +1,17 @@
+//
+//  ChallengeView.swift
+//  Challengely
+//
+//  Created by Tilak Shakya on 29/07/25.
+//
+
 import SwiftUI
 
+/// Main challenge interface where users view, accept, and complete daily challenges
 struct ChallengeView: View {
     @EnvironmentObject var dataManager: DataManager
+    
+    // MARK: - Challenge State
     @State private var isChallengeRevealed = false
     @State private var isChallengeAccepted = false
     @State private var isChallengeCompleted = false
@@ -14,7 +24,7 @@ struct ChallengeView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Enhanced gradient background
+                // Background gradient
                 LinearGradient(
                     gradient: Gradient(colors: [
                         Color("AppPrimaryColor").opacity(0.08),
@@ -43,7 +53,7 @@ struct ChallengeView: View {
                             )
                             .transition(.scale.combined(with: .opacity))
                             
-                            // Action buttons
+                            // Action buttons or completion view
                             if !isChallengeCompleted {
                                 ActionButtonsView(
                                     isRevealed: isChallengeRevealed,
@@ -72,17 +82,17 @@ struct ChallengeView: View {
                     .padding(.top, 20)
                 }
                 
-                // Confetti overlay
+                // Confetti celebration overlay
                 if showConfetti {
                     ConfettiView()
                         .allowsHitTesting(false)
                 }
             }
-            .navigationTitle("Today's Challenge")
+            .navigationTitle(Constants.Navigation.challenge)
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Refresh") {
+                    Button(Constants.Button.refresh) {
                         refreshChallenge()
                     }
                     .disabled(isChallengeAccepted && !isChallengeCompleted)
@@ -94,10 +104,12 @@ struct ChallengeView: View {
             ShareSheetView(challenge: dataManager.currentChallenge, streak: dataManager.userProfile.currentStreak)
         }
         .onAppear {
+            // Animate cards on view appearance
             withAnimation(.easeOut(duration: 0.6).delay(0.2)) {
                 animateCards = true
             }
             
+            // Restore challenge state if already completed
             if let challenge = dataManager.currentChallenge, challenge.isCompleted {
                 isChallengeRevealed = true
                 isChallengeAccepted = true
@@ -106,6 +118,9 @@ struct ChallengeView: View {
         }
     }
     
+    // MARK: - Challenge Actions
+    
+    /// Reveals the challenge details to the user
     private func revealChallenge() {
         withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
             isChallengeRevealed = true
@@ -113,13 +128,14 @@ struct ChallengeView: View {
         HapticManager.shared.impact(style: .medium)
     }
     
+    /// Accepts the challenge and starts the timer
     private func acceptChallenge() {
         withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
             isChallengeAccepted = true
         }
         HapticManager.shared.impact(style: .heavy)
         
-        // Start timer
+        // Start countdown timer
         if let challenge = dataManager.currentChallenge {
             timeRemaining = challenge.estimatedTime * 60 // Convert to seconds
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
@@ -130,6 +146,7 @@ struct ChallengeView: View {
         }
     }
     
+    /// Completes the challenge and shows celebration
     private func completeChallenge() {
         withAnimation(.spring(response: 0.6, dampingFraction: 0.6)) {
             isChallengeCompleted = true
@@ -140,7 +157,7 @@ struct ChallengeView: View {
         
         dataManager.completeChallenge()
         
-        // Show confetti
+        // Show confetti celebration
         showConfetti = true
         HapticManager.shared.notification(type: .success)
         
@@ -151,6 +168,7 @@ struct ChallengeView: View {
         }
     }
     
+    /// Refreshes the challenge and resets all state
     private func refreshChallenge() {
         dataManager.generateNewChallenge()
         isChallengeRevealed = false
@@ -162,7 +180,7 @@ struct ChallengeView: View {
         HapticManager.shared.impact(style: .light)
     }
 }
- 
+
 #Preview(body: {
     ChallengeView()
 })

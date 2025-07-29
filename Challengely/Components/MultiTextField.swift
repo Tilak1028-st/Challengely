@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+/// Custom multi-line text input component that dynamically adjusts its height
+/// Wraps UITextView to provide SwiftUI compatibility with dynamic sizing
 struct MultiTextField: UIViewRepresentable {
     @Binding var text: String
     @EnvironmentObject var obj: Observed
@@ -19,7 +21,7 @@ struct MultiTextField: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<MultiTextField>) -> UITextView {
         let view = UITextView()
         view.font = .systemFont(ofSize: 17)
-        view.text = "Type Something"
+        view.text = Constants.Placeholder.typeSomething
         view.textColor = UIColor.systemGray
         view.backgroundColor = .clear
         view.delegate = context.coordinator
@@ -53,15 +55,16 @@ struct MultiTextField: UIViewRepresentable {
         }
         
         func textViewDidBeginEditing(_ textView: UITextView) {
-            if textView.text == "Type Something" {
+            // Clear placeholder when user starts typing
+            if textView.text == Constants.Placeholder.typeSomething {
                 textView.text = ""
                 textView.textColor = UIColor.label
             }
         }
         
         func textViewDidChange(_ textView: UITextView) {
-            // Only update parent text if it's not the placeholder
-            if textView.text != "Type Something" {
+            // Update parent text and notify size change
+            if textView.text != Constants.Placeholder.typeSomething {
                 parent.text = textView.text
             } else {
                 parent.text = ""
@@ -71,8 +74,9 @@ struct MultiTextField: UIViewRepresentable {
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {
+            // Show placeholder if text is empty
             if textView.text.isEmpty {
-                textView.text = "Type Something"
+                textView.text = Constants.Placeholder.typeSomething
                 textView.textColor = UIColor.systemGray
             }
         }

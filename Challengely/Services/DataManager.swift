@@ -1,18 +1,27 @@
+//
+//  DataManager.swift
+//  Challengely
+//
+//  Created by Tilak Shakya on 29/07/25.
+//
+
 import Foundation
 import SwiftUI
 
+/// Central data manager that handles all app state and persistence
+/// Single source of truth for user profile, challenges, and chat messages
 class DataManager: ObservableObject {
     @Published var userProfile: UserProfile
     @Published var currentChallenge: Challenge?
     @Published var chatMessages: [ChatMessage] = []
     
     private let userDefaults = UserDefaults.standard
-    private let userProfileKey = "userProfile"
-    private let currentChallengeKey = "currentChallenge"
-    private let chatMessagesKey = "chatMessages"
+    private let userProfileKey = Constants.UserDefaults.userProfile
+    private let currentChallengeKey = Constants.UserDefaults.currentChallenge
+    private let chatMessagesKey = Constants.UserDefaults.chatMessages
     
     init() {
-        // Load user profile
+        // Load user profile from UserDefaults
         if let data = userDefaults.data(forKey: userProfileKey),
            let profile = try? JSONDecoder().decode(UserProfile.self, from: data) {
             self.userProfile = profile
@@ -20,23 +29,25 @@ class DataManager: ObservableObject {
             self.userProfile = UserProfile()
         }
         
-        // Load current challenge
+        // Load current challenge from UserDefaults
         if let data = userDefaults.data(forKey: currentChallengeKey),
            let challenge = try? JSONDecoder().decode(Challenge.self, from: data) {
             self.currentChallenge = challenge
         }
         
-        // Load chat messages
+        // Load chat messages from UserDefaults
         if let data = userDefaults.data(forKey: chatMessagesKey),
            let messages = try? JSONDecoder().decode([ChatMessage].self, from: data) {
             self.chatMessages = messages
         }
         
-        // Generate new challenge if needed
+        // Generate new challenge if needed (new day or no challenge)
         if currentChallenge == nil || !Calendar.current.isDate(currentChallenge!.date, inSameDayAs: Date()) {
             generateNewChallenge()
         }
     }
+    
+    // MARK: - Persistence Methods
     
     func saveUserProfile() {
         if let data = try? JSONEncoder().encode(userProfile) {
@@ -56,6 +67,8 @@ class DataManager: ObservableObject {
             userDefaults.set(data, forKey: chatMessagesKey)
         }
     }
+    
+    // MARK: - Challenge Management
     
     func generateNewChallenge() {
         let challenges = Challenge.sampleChallenges
@@ -78,7 +91,7 @@ class DataManager: ObservableObject {
         // Update user stats
         userProfile.totalChallengesCompleted += 1
         
-        // Update streak
+        // Update streak logic
         if let lastDate = userProfile.lastChallengeDate {
             let calendar = Calendar.current
             if calendar.isDate(lastDate, inSameDayAs: Date().addingTimeInterval(-86400)) {
@@ -95,6 +108,8 @@ class DataManager: ObservableObject {
         
         saveUserProfile()
     }
+    
+    // MARK: - Chat Management
     
     func addChatMessage(_ message: ChatMessage) {
         chatMessages.append(message)

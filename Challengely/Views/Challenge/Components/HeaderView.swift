@@ -26,7 +26,7 @@ struct HeaderView: View {
                             .font(.system(size: 28, weight: .bold, design: .rounded))
                             .foregroundColor(Color("AppPrimaryColor"))
                         
-                        Text("days")
+                        Text(Constants.Time.days)
                             .font(.subheadline)
                             .fontWeight(.medium)
                             .foregroundColor(Color("Subtext"))

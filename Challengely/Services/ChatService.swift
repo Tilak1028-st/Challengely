@@ -1,5 +1,14 @@
+//
+//  ChatService.swift
+//  Challengely
+//
+//  Created by Tilak Shakya on 29/07/25.
+//
+
 import Foundation
 
+/// Chat service that provides AI-like responses using hardcoded fallback system
+/// Handles user interactions and provides contextual suggestions
 class ChatService: ObservableObject {
     @Published var isTyping = false
     @Published var isLoading = false
@@ -29,7 +38,8 @@ class ChatService: ObservableObject {
     Always respond as a supportive coach and friend, focusing on personal development and growth.
     """
     
-    // MARK: - Generate Response (Fallback System)
+    // MARK: - Response Generation
+    
     func generateResponse(
         userMessage: String,
         challenge: Challenge?,
@@ -50,7 +60,7 @@ class ChatService: ObservableObject {
         return generateFallbackResponse(for: userMessage, challenge: challenge)
     }
     
-    // MARK: - Hardcoded Response System
+    /// Generates contextual responses based on user input and current challenge
     func generateFallbackResponse(for userMessage: String, challenge: Challenge?) -> String {
         let lowercasedMessage = userMessage.lowercased()
         
@@ -133,7 +143,8 @@ class ChatService: ObservableObject {
         return "I'm here to support you on your challenge journey! 💪 What would you like to know about your challenge or how can I help motivate you today?"
     }
     
-    // MARK: - Construct Prompt
+    // MARK: - Utility Methods
+    
     private func constructPrompt(
         userMessage: String,
         challenge: Challenge?,
@@ -170,6 +181,7 @@ class ChatService: ObservableObject {
         }
     }
     
+    /// Returns contextual suggestions based on current challenge
     func getSuggestions(for challenge: Challenge?) -> [ChatSuggestion] {
         var suggestions: [ChatSuggestion] = []
         

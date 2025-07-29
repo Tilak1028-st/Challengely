@@ -36,9 +36,9 @@ struct CompletionView: View {
             
             Button(action: onShare) {
                 HStack {
-                    Image(systemName: "square.and.arrow.up")
+                    Image(systemName: Constants.SystemImages.share)
                         .font(.title3)
-                    Text("Share Achievement")
+                    Text(Constants.Button.share)
                         .font(.headline)
                         .fontWeight(.semibold)
                 }

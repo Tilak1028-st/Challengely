@@ -14,12 +14,12 @@ struct DifficultyStepView: View {
     var body: some View {
                     VStack(spacing: 28) {
                 VStack(spacing: 12) {
-                    Text("Choose your pace 🚀")
+                    Text(Constants.Onboarding.difficultyTitle)
                         .font(.title2)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
                 
-                Text("We'll tailor challenges to match your comfort zone")
+                Text(Constants.Onboarding.difficultySubtitle)
                     .font(.caption)
                     .foregroundColor(Color("Subtext"))
                     .multilineTextAlignment(.center)

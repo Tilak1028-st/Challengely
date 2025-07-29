@@ -96,7 +96,7 @@ struct ShareSheetView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
+                    Button(Constants.Button.done) {
                         dismiss()
                     }
                     .foregroundColor(Color("AppPrimaryColor"))
@@ -133,9 +133,9 @@ struct ShareSheetView: View {
             🎉 Challenge Completed! 🎉
             
             I just completed: \(challenge.title)
-            Current streak: \(streak) days
+            Current streak: \(streak) \(Constants.Time.days)
             
-            Join me on Challengely for daily personal growth challenges!
+            Join me on \(Constants.App.name) for daily personal growth challenges!
             """
             
             UIPasteboard.general.string = shareText

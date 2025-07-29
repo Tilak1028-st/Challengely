@@ -1,6 +1,14 @@
+//
+//  ChatInputView.swift
+//  Challengely
+//
+//  Created by Tilak Shakya on 29/07/25.
+//
+
 import SwiftUI
 import Foundation
 
+/// Expandable text input component for chat messages with character limit and send functionality
 struct ChatInputView: View {
     @EnvironmentObject var obj: Observed
     @Binding var messageText: String
@@ -12,6 +20,8 @@ struct ChatInputView: View {
     
     @State private var textHeight: CGFloat = 44
 
+    // MARK: - Computed Properties
+    
     private var characterCount: Int {
         messageText.count
     }
@@ -40,7 +50,7 @@ struct ChatInputView: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            // Character counter
+            // Character counter (shown when typing)
             if characterCount > 0 {
                 HStack {
                     Spacer()
@@ -51,7 +61,7 @@ struct ChatInputView: View {
                 }
             }
             
-            // Input area
+            // Input area with send button
             HStack(alignment: .bottom, spacing: 12) {
                 ZStack(alignment: .topLeading) {
                     MultiTextField(text: $messageText)
@@ -71,7 +81,7 @@ struct ChatInputView: View {
                         
                 }
 
-                // Send button
+                // Send button with loading state
                 Button(action: {
                     if !isOverLimit && !isSending {
                         onSend()
@@ -85,7 +95,7 @@ struct ChatInputView: View {
                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                                 .scaleEffect(0.8)
                         } else {
-                            Image(systemName: "arrow.up")
+                            Image(systemName: Constants.SystemImages.send)
                                 .font(.system(size: 16, weight: .semibold))
                         }
                     }

@@ -22,7 +22,7 @@ struct ShareCardView: View {
                         .scaleEffect(animateElements ? 1.1 : 1.0)
                         .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: animateElements)
                     
-                    Text("Challenge Completed!")
+                    Text(Constants.Success.challengeCompleted)
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundColor(Color("TextLabel"))
@@ -44,7 +44,7 @@ struct ShareCardView: View {
                             .fontWeight(.bold)
                             .foregroundColor(Color("AppPrimaryColor"))
                         
-                        Text("minutes")
+                        Text(Constants.Time.minutes)
                             .font(.caption)
                             .fontWeight(.medium)
                             .foregroundColor(Color("Subtext"))
@@ -56,7 +56,7 @@ struct ShareCardView: View {
                             .fontWeight(.bold)
                             .foregroundColor(Color("Accent"))
                         
-                        Text("day streak")
+                        Text("\(Constants.Time.days) streak")
                             .font(.caption)
                             .fontWeight(.medium)
                             .foregroundColor(Color("Subtext"))
@@ -66,12 +66,12 @@ struct ShareCardView: View {
             
             // Footer
             VStack(spacing: 6) {
-                Text("Challengely")
+                Text(Constants.App.name)
                     .font(.caption)
                     .fontWeight(.bold)
                     .foregroundColor(Color("Subtext"))
                 
-                Text("Daily Personal Growth")
+                Text(Constants.App.tagline)
                     .font(.caption2)
                     .foregroundColor(Color("Subtext"))
             }

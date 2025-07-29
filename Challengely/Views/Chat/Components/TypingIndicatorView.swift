@@ -16,7 +16,7 @@ struct TypingIndicatorView: View {
     var body: some View {
         HStack(alignment: .bottom, spacing: 8) {
             // Assistant avatar
-            Image(systemName: "brain.head.profile")
+            Image(systemName: Constants.SystemImages.assistantAvatar)
                 .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.white)
                 .frame(width: 32, height: 32)

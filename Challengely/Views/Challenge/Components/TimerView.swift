@@ -13,7 +13,7 @@ struct TimerView: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            Text("⏱️ Time Remaining")
+            Text("⏱️ \(Constants.Challenge.timeRemaining) Remaining")
                 .font(.caption)
                 .fontWeight(.medium)
                 .foregroundColor(Color("Subtext"))

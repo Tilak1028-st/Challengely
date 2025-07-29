@@ -13,20 +13,20 @@ struct WelcomeMessageView: View {
     var body: some View {
         VStack(spacing: 20) {
             // Assistant avatar
-            Image(systemName: "robot")
+            Image(systemName: Constants.SystemImages.robot)
                 .font(.system(size: 50, weight: .semibold))
                 .foregroundColor(Color("AppPrimaryColor"))
                 .scaleEffect(animateWelcome ? 1.1 : 1.0)
                 .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: animateWelcome)
             
             VStack(spacing: 12) {
-                Text("Hello! I'm your Challenge Assistant 🤖")
+                Text(Constants.Chat.welcomeTitle)
                     .font(.title2)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color("TextLabel"))
                 
-                Text("Ask me anything about today's challenge, get motivation, or share your progress!")
+                Text(Constants.Chat.welcomeMessage)
                     .font(.body)
                     .foregroundColor(.subtext)
                     .multilineTextAlignment(.center)

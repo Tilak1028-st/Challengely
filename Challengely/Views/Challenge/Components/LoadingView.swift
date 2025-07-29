@@ -16,7 +16,7 @@ struct LoadingView: View {
                 .scaleEffect(1.5)
                 .tint(Color("AppPrimaryColor"))
             
-            Text("Loading your challenge...")
+            Text(Constants.Challenge.loadingChallenge)
                 .font(.title3)
                 .fontWeight(.medium)
                 .foregroundColor(Color("Subtext"))
