@@ -23,7 +23,7 @@ struct ChatView: View {
     
     private let maxInputHeight: CGFloat = 120
     private let characterLimit = Constants.Limits.messageLength
-    private let sendCooldown: TimeInterval = 1.0 // 1 second cooldown between messages
+    private let sendCooldown: TimeInterval = 1.0
     
     var body: some View {
         NavigationView {
@@ -72,12 +72,12 @@ struct ChatView: View {
                                 
                                 // Bottom spacer for auto-scroll
                                 Color.clear
-                                    .frame(height: messageText.isEmpty ? 1 : 30) // Extra space when character counter is visible
+                                    .frame(height: messageText.isEmpty ? 1 : 30)
                                     .id("bottom")
                             }
                             .padding(.horizontal, 20)
                             .padding(.top, 20)
-                            .padding(.bottom, messageText.isEmpty ? 20 : 40) // Extra padding when character counter is visible
+                            .padding(.bottom, messageText.isEmpty ? 20 : 40)
                         }
                         .onChange(of: dataManager.chatMessages.count) { _ in
                             withAnimation(.easeInOut(duration: 0.3)) {
@@ -146,28 +146,28 @@ struct ChatView: View {
                             sendMessageWithText(text)
                         }
                     )
-                                            .onChange(of: messageText) { newValue in
-                            let wasTyping = isUserTyping
-                            let isNowTyping = !newValue.isEmpty
+                    .onChange(of: messageText) { newValue in
+                        let wasTyping = isUserTyping
+                        let isNowTyping = !newValue.isEmpty
+                        
+                        if wasTyping != isNowTyping {
+                            withAnimation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0.2)) {
+                                isUserTyping = isNowTyping
+                            }
                             
-                            if wasTyping != isNowTyping {
-                                withAnimation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0.2)) {
-                                    isUserTyping = isNowTyping
-                                }
-                                
-                                // Haptic feedback for typing state change
-                                if isNowTyping {
-                                    HapticManager.shared.impact(style: .light)
-                                } else {
-                                    HapticManager.shared.impact(style: .soft)
-                                }
-                                
-                                // Scroll to bottom when character counter appears/disappears
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    scrollToBottom = true
-                                }
+                            // Haptic feedback for typing state change
+                            if isNowTyping {
+                                HapticManager.shared.impact(style: .light)
+                            } else {
+                                HapticManager.shared.impact(style: .soft)
+                            }
+                            
+                            // Scroll to bottom when character counter appears/disappears
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                scrollToBottom = true
                             }
                         }
+                    }
                 }
             }
             .navigationTitle(Constants.Navigation.assistant)
