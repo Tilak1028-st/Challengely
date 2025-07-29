@@ -41,9 +41,18 @@ struct MultiTextField: UIViewRepresentable {
     
     func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<MultiTextField>) {
         // Only update if the text has actually changed and is not empty
-        if uiView.text != text && !text.isEmpty {
-            uiView.text = text
-            uiView.textColor = UIColor.label
+        if uiView.text != text {
+            if text.isEmpty {
+                uiView.text = Constants.Placeholder.typeSomething
+                uiView.textColor = UIColor.systemGray
+                // Remove focus to hide cursor when showing placeholder
+               DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                uiView.resignFirstResponder()
+               }
+            } else {
+                uiView.text = text
+                uiView.textColor = UIColor.label
+            }
         }
     }
     

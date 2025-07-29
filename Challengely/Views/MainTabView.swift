@@ -36,7 +36,7 @@ struct MainTabView: View {
                 .tag(2)
         }
         .accentColor(AppColor.appPrimary)
-        .onChange(of: selectedTab) { _, newValue in
+        .onChange(of: selectedTab) { _, _ in
             HapticManager.shared.impact(style: .light)
         }
         .onAppear {
