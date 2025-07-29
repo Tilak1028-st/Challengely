@@ -17,8 +17,12 @@ struct ChatInputView: View {
     let characterLimit: Int
     let isSending: Bool
     var onSend: () -> Void
+    var onSendWithText: ((String) -> Void)?
     
     @State private var textHeight: CGFloat = 44
+    @State private var showFullScreenText = false
+    @State private var shouldClearText = false
+    @State private var forceRefresh = false
 
     // MARK: - Computed Properties
     
@@ -63,9 +67,10 @@ struct ChatInputView: View {
             
             // Input area with send button
             HStack(alignment: .bottom, spacing: 12) {
-                ZStack(alignment: .topLeading) {
+                ZStack(alignment: .topTrailing) {
                     MultiTextField(text: $messageText)
                         .frame(height: self.obj.size < 120 ? self.obj.size : 120)
+                        .id(forceRefresh) // Force refresh when needed
                         .padding(.horizontal, 8)
                         .padding(.vertical, 2)
                         .background(AppColor.card)
@@ -78,7 +83,24 @@ struct ChatInputView: View {
                                 )
                         )
                         .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
-                        
+                    
+                    // Expand button (shown when text field reaches 120 height)
+                    if self.obj.size >= 120 {
+                        Button(action: {
+                            showFullScreenText = true
+                        }) {
+                            Image(systemName: Constants.SystemImages.expand)
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(AppColor.subtext)
+                                .frame(width: 28, height: 28)
+                                .background(AppColor.card)
+                                .clipShape(Circle())
+                                .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
+                        }
+                        .padding(.top, 8)
+                        .padding(.trailing, 8)
+                        .transition(.scale.combined(with: .opacity))
+                    }
                 }
 
                 // Send button with loading state
@@ -120,6 +142,48 @@ struct ChatInputView: View {
             AppColor.background
                 .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: -2)
         )
+        .fullScreenCover(isPresented: $showFullScreenText) {
+            FullScreenTextView(
+                text: $messageText,
+                isPresented: $showFullScreenText,
+                characterLimit: characterLimit,
+                onSend: {
+                    // Send message with current text and clear
+                    if let sendWithText = onSendWithText {
+                        // Use the text from FullScreenTextView before it was cleared
+                        sendWithText(messageText)
+                    } else {
+                        onSend()
+                    }
+                    // Mark that we should clear text when view dismisses
+                    shouldClearText = true
+                    // Reset expanded state
+                    isExpanded = false
+                }
+            )
+        }
+        .onChange(of: showFullScreenText) { isPresented in
+            // Clear the main input field when full-screen view is dismissed
+            if !isPresented && shouldClearText {
+                print("FullScreen dismissed, clearing text: \(messageText)")
+                // Force UI update with animation
+                withAnimation(.easeInOut(duration: 0.1)) {
+                    messageText = ""
+                    isExpanded = false
+                    forceRefresh.toggle() // Force MultiTextField refresh
+                }
+                shouldClearText = false
+                
+                // Double-check clearing after a brief delay
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    if messageText.isEmpty == false {
+                        print("Forcing text clear again")
+                        messageText = ""
+                        forceRefresh.toggle()
+                    }
+                }
+            }
+        }
     }
 }
 

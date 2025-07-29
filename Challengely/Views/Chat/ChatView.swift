@@ -48,6 +48,10 @@ struct ChatView: View {
                     ScrollViewReader { proxy in
                         ScrollView {
                             LazyVStack(spacing: 16) {
+                                // Top spacer to ensure proper scrolling
+                                Color.clear
+                                    .frame(height: 1)
+                                    .id("top")
                                 // Welcome message for empty chat
                                 if dataManager.chatMessages.isEmpty {
                                     WelcomeMessageView()
@@ -68,12 +72,12 @@ struct ChatView: View {
                                 
                                 // Bottom spacer for auto-scroll
                                 Color.clear
-                                    .frame(height: 1)
+                                    .frame(height: messageText.isEmpty ? 1 : 30) // Extra space when character counter is visible
                                     .id("bottom")
                             }
                             .padding(.horizontal, 20)
                             .padding(.top, 20)
-                            .padding(.bottom, 20)
+                            .padding(.bottom, messageText.isEmpty ? 20 : 40) // Extra padding when character counter is visible
                         }
                         .onChange(of: dataManager.chatMessages.count) { _ in
                             withAnimation(.easeInOut(duration: 0.3)) {
@@ -84,6 +88,24 @@ struct ChatView: View {
                             if chatService.isTyping {
                                 withAnimation(.easeInOut(duration: 0.3)) {
                                     proxy.scrollTo("typing", anchor: .bottom)
+                                }
+                            }
+                        }
+                        .onChange(of: scrollToBottom) { shouldScroll in
+                            if shouldScroll {
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    // Use different anchor based on whether character counter is visible
+                                    let anchor: UnitPoint = messageText.isEmpty ? .bottom : .bottom
+                                    proxy.scrollTo("bottom", anchor: anchor)
+                                }
+                                scrollToBottom = false
+                            }
+                        }
+                        .onAppear {
+                            // Scroll to bottom when view appears
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    proxy.scrollTo("bottom", anchor: .bottom)
                                 }
                             }
                         }
@@ -116,27 +138,36 @@ struct ChatView: View {
                             set: { isInputFocused = $0 }
                         ),
                         characterLimit: characterLimit,
-                        isSending: isSendingMessage
-                    ) {
-                        sendMessage(messageText)
-                    }
-                    .onChange(of: messageText) { newValue in
-                        let wasTyping = isUserTyping
-                        let isNowTyping = !newValue.isEmpty
-                        
-                        if wasTyping != isNowTyping {
-                            withAnimation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0.2)) {
-                                isUserTyping = isNowTyping
-                            }
+                        isSending: isSendingMessage,
+                        onSend: {
+                            sendMessage(messageText)
+                        },
+                        onSendWithText: { text in
+                            sendMessageWithText(text)
+                        }
+                    )
+                                            .onChange(of: messageText) { newValue in
+                            let wasTyping = isUserTyping
+                            let isNowTyping = !newValue.isEmpty
                             
-                            // Haptic feedback for typing state change
-                            if isNowTyping {
-                                HapticManager.shared.impact(style: .light)
-                            } else {
-                                HapticManager.shared.impact(style: .soft)
+                            if wasTyping != isNowTyping {
+                                withAnimation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0.2)) {
+                                    isUserTyping = isNowTyping
+                                }
+                                
+                                // Haptic feedback for typing state change
+                                if isNowTyping {
+                                    HapticManager.shared.impact(style: .light)
+                                } else {
+                                    HapticManager.shared.impact(style: .soft)
+                                }
+                                
+                                // Scroll to bottom when character counter appears/disappears
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    scrollToBottom = true
+                                }
                             }
                         }
-                    }
                 }
             }
             .navigationTitle(Constants.Navigation.assistant)
@@ -163,7 +194,11 @@ struct ChatView: View {
     // MARK: - Message Handling
     
     private func sendMessage(_ text: String) {
-        let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        sendMessageWithText(text)
+    }
+    
+    private func sendMessageWithText(_ inputText: String) {
+        let trimmedText = inputText.trimmingCharacters(in: .whitespacesAndNewlines)
         
         // Edge case: Empty message
         guard !trimmedText.isEmpty else { return }
@@ -257,6 +292,9 @@ struct ChatView: View {
                     dataManager.addChatMessage(aiMessage)
                 }
                 
+                // Ensure scroll to bottom for each word update
+                scrollToBottom = true
+                
                 wordIndex += 1
             } else {
                 timer.invalidate()
@@ -273,8 +311,15 @@ struct ChatView: View {
             queue: .main
         ) { notification in
             if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-                withAnimation(.easeInOut(duration: 0.3)) {
+                let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.3
+                
+                withAnimation(.easeInOut(duration: duration)) {
                     keyboardHeight = keyboardFrame.height
+                }
+                
+                // Scroll to bottom when keyboard appears to keep last message visible
+                DispatchQueue.main.asyncAfter(deadline: .now() + duration * 0.5) {
+                    scrollToBottom = true
                 }
             }
         }
@@ -283,13 +328,20 @@ struct ChatView: View {
             forName: UIResponder.keyboardWillHideNotification,
             object: nil,
             queue: .main
-        ) { _ in
-            withAnimation(.easeInOut(duration: 0.3)) {
+        ) { notification in
+            let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.3
+            
+            withAnimation(.easeInOut(duration: duration)) {
                 keyboardHeight = 0
                 // Reset typing state when keyboard is dismissed
                 if messageText.isEmpty {
                     isUserTyping = false
                 }
+            }
+            
+            // Scroll to bottom when keyboard is dismissed
+            DispatchQueue.main.asyncAfter(deadline: .now() + duration * 0.5) {
+                scrollToBottom = true
             }
         }
     }

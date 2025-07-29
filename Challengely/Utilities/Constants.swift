@@ -23,6 +23,8 @@ struct Constants {
         static let challenge = "Today's Challenge"
         static let assistant = "Challenge Assistant"
         static let profile = "Profile"
+        static let newMessage = "New Message"
+        static let share = "Share Achievement"
     }
     
     // MARK: - Tab Labels
@@ -107,6 +109,7 @@ struct Constants {
         static let search = "magnifyingglass"
         static let filter = "line.3.horizontal.decrease.circle"
         static let sort = "arrow.up.arrow.down"
+        static let expand = "arrow.up.left.and.arrow.down.right"
     }
     
     // MARK: - Button Labels

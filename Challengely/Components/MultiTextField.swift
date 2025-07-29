@@ -29,6 +29,7 @@ struct MultiTextField: UIViewRepresentable {
         view.isEditable = true
         view.isUserInteractionEnabled = true
         view.isScrollEnabled = true
+        view.showsVerticalScrollIndicator = true
         
         // Set initial size after view is configured
         DispatchQueue.main.async {
