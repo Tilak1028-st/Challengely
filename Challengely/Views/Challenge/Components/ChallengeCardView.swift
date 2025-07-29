@@ -89,12 +89,16 @@ struct ChallengeCardView: View {
             
             // Challenge description
             if isRevealed {
-                Text(challenge.description)
-                    .font(.body)
-                    .foregroundColor(Color("Subtext"))
-                    .multilineTextAlignment(.center)
-                    .lineSpacing(4)
-                    .transition(.opacity.combined(with: .scale))
+                ScrollView {
+                    Text(challenge.description)
+                        .font(.body)
+                        .foregroundColor(Color("Subtext"))
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(4)
+                        .padding(.horizontal, 4)
+                }
+                .frame(maxHeight: 120) // Limit height for very long descriptions
+                .transition(.opacity.combined(with: .scale))
             }
             
             // Challenge details

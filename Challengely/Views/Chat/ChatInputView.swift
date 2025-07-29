@@ -7,6 +7,7 @@ struct ChatInputView: View {
     @Binding var isExpanded: Bool
     @Binding var isFocused: Bool
     let characterLimit: Int
+    let isSending: Bool
     var onSend: () -> Void
     
     @State private var textHeight: CGFloat = 44
@@ -72,27 +73,35 @@ struct ChatInputView: View {
 
                 // Send button
                 Button(action: {
-                    if !isOverLimit {
+                    if !isOverLimit && !isSending {
                         onSend()
                         messageText = ""
                         isExpanded = false
                     }
                 }) {
-                    Image(systemName: "arrow.up")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.white)
-                        .frame(width: 44, height: 44)
-                        .background(
-                            messageText.isEmpty || isOverLimit
-                            ? Color("Subtext").opacity(0.3)
-                            : Color("PrimaryColor")
-                        )
-                        .clipShape(Circle())
-                        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
+                    Group {
+                        if isSending {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                                .scaleEffect(0.8)
+                        } else {
+                            Image(systemName: "arrow.up")
+                                .font(.system(size: 16, weight: .semibold))
+                        }
+                    }
+                    .foregroundColor(.white)
+                    .frame(width: 44, height: 44)
+                    .background(
+                        messageText.isEmpty || isOverLimit || isSending
+                        ? Color("Subtext").opacity(0.3)
+                        : Color("PrimaryColor")
+                    )
+                    .clipShape(Circle())
+                    .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
                 }
-                .disabled(messageText.isEmpty || isOverLimit)
-                .scaleEffect(messageText.isEmpty || isOverLimit ? 0.95 : 1.0)
-                .animation(.easeInOut(duration: 0.2), value: messageText.isEmpty || isOverLimit)
+                .disabled(messageText.isEmpty || isOverLimit || isSending)
+                .scaleEffect(messageText.isEmpty || isOverLimit || isSending ? 0.95 : 1.0)
+                .animation(.easeInOut(duration: 0.2), value: messageText.isEmpty || isOverLimit || isSending)
             }
         }
         .padding(.horizontal, 16)
@@ -109,7 +118,8 @@ struct ChatInputView: View {
         messageText: .constant(""),
         isExpanded: .constant(false),
         isFocused: .constant(false),
-        characterLimit: 500
+        characterLimit: 500,
+        isSending: false
     ) {
         print("Send tapped")
     }

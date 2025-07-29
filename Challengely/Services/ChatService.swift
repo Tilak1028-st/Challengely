@@ -54,12 +54,33 @@ class ChatService: ObservableObject {
     func generateFallbackResponse(for userMessage: String, challenge: Challenge?) -> String {
         let lowercasedMessage = userMessage.lowercased()
         
-        // Challenge-related responses
+        // Track repeated messages for varied responses
+        var messageCounts: [String: Int] = [:]
+        let messageKey = lowercasedMessage
+        messageCounts[messageKey, default: 0] += 1
+        let repeatCount = messageCounts[messageKey] ?? 1
+        
+        // Challenge-related responses with variation
         if lowercasedMessage.contains("challenge") || lowercasedMessage.contains("what") {
             if let challenge = challenge {
-                return "Your challenge today is: \(challenge.title) 🎯\n\nIt's a \(challenge.difficulty.rawValue.lowercased()) \(challenge.category.rawValue.lowercased()) challenge that should take about \(challenge.estimatedTime) minutes. Ready to tackle it? 💪"
+                let responses = [
+                    "Your challenge today is: \(challenge.title) 🎯\n\nIt's a \(challenge.difficulty.rawValue.lowercased()) \(challenge.category.rawValue.lowercased()) challenge that should take about \(challenge.estimatedTime) minutes. Ready to tackle it? 💪",
+                    "Here's your daily challenge: \(challenge.title) 🎯\n\nThis is a \(challenge.difficulty.rawValue.lowercased()) \(challenge.category.rawValue.lowercased()) activity that will take around \(challenge.estimatedTime) minutes. Let's get started! 🚀",
+                    "Today's challenge for you: \(challenge.title) 🎯\n\nA \(challenge.difficulty.rawValue.lowercased()) \(challenge.category.rawValue.lowercased()) challenge that should take about \(challenge.estimatedTime) minutes. Are you ready? ✨"
+                ]
+                
+                if repeatCount > 1 {
+                    return "You've asked about the challenge \(repeatCount) times! 😄 Here it is again: \(challenge.title) 🎯\n\nIt's a \(challenge.difficulty.rawValue.lowercased()) \(challenge.category.rawValue.lowercased()) challenge that should take about \(challenge.estimatedTime) minutes. Ready to tackle it? 💪"
+                }
+                
+                return responses[repeatCount % responses.count]
             } else {
-                return "I don't see a challenge for today yet! Check back later or try refreshing the app. ✨"
+                let responses = [
+                    "I don't see a challenge for today yet! Check back later or try refreshing the app. ✨",
+                    "No challenge available right now! Try refreshing the app or check back later. 🌟",
+                    "Looks like there's no challenge set for today. Try refreshing the app! 🔄"
+                ]
+                return responses[repeatCount % responses.count]
             }
         }
         
