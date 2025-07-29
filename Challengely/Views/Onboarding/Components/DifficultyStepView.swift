@@ -21,7 +21,7 @@ struct DifficultyStepView: View {
                 
                 Text(Constants.Onboarding.difficultySubtitle)
                     .font(.caption)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .lineLimit(2)

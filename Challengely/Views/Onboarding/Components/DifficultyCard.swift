@@ -17,9 +17,9 @@ struct DifficultyCard: View {
     
     private var difficultyColor: Color {
         switch difficulty {
-        case .easy: return Color("Success")
-        case .medium: return Color("Accent")
-        case .hard: return Color("ChallengeRed")
+        case .easy: return AppColor.success
+        case .medium: return AppColor.accent
+        case .hard: return AppColor.challengeRed
         }
     }
     
@@ -34,7 +34,7 @@ struct DifficultyCard: View {
                     
                     Text(difficultyDescription)
                         .font(.subheadline)
-                        .foregroundColor(isSelected ? .white.opacity(0.8) : Color("Subtext"))
+                        .foregroundColor(isSelected ? .white.opacity(0.8) : AppColor.subtext)
                         .lineLimit(2)
                 }
                 

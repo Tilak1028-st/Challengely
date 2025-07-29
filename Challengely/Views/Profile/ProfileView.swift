@@ -19,10 +19,10 @@ struct ProfileView: View {
                     // Base gradient
                     LinearGradient(
                         gradient: Gradient(colors: [
-                            Color("AppPrimaryColor").opacity(0.08),
-                            Color("Accent").opacity(0.06),
-                            Color("PrimaryDark").opacity(0.04),
-                            Color("Background")
+                            AppColor.appPrimary.opacity(0.08),
+                            AppColor.accent.opacity(0.06),
+                            AppColor.primaryDark.opacity(0.04),
+                            AppColor.background
                         ]),
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
@@ -31,7 +31,7 @@ struct ProfileView: View {
                     // Floating particles for engagement
                     ForEach(0..<6) { index in
                         Circle()
-                            .fill(Color("AppPrimaryColor").opacity(0.06))
+                            .fill(AppColor.appPrimary.opacity(0.06))
                             .frame(width: CGFloat.random(in: 8...20), height: CGFloat.random(in: 8...20))
                             .position(
                                 x: CGFloat.random(in: 0...UIScreen.main.bounds.width),
@@ -105,12 +105,12 @@ struct ProfileView: View {
                     }) {
                         ZStack {
                             Circle()
-                                .fill(Color("AppPrimaryColor").opacity(0.1))
+                                .fill(AppColor.appPrimary.opacity(0.1))
                                 .frame(width: 40, height: 40)
                             
                             Image(systemName: "pencil.circle.fill")
                                 .font(.title2)
-                                .foregroundColor(Color("AppPrimaryColor"))
+                                .foregroundColor(AppColor.appPrimary)
                         }
                     }
                     .scaleEffect(animateHeader ? 1.0 : 0.8)

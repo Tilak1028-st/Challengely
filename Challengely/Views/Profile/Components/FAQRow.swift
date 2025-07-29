@@ -19,14 +19,14 @@ struct FAQRow: View {
                     Text(question)
                         .font(.body)
                         .fontWeight(.medium)
-                        .foregroundColor(Color("TextLabel"))
+                        .foregroundColor(AppColor.textLabel)
                         .multilineTextAlignment(.leading)
                     
                     Spacer()
                     
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                         .font(.caption)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                 }
             }
             .buttonStyle(PlainButtonStyle())
@@ -34,7 +34,7 @@ struct FAQRow: View {
             if isExpanded {
                 Text(answer)
                     .font(.caption)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
                     .padding(.top, 4)
                     .transition(.opacity.combined(with: .move(edge: .top)))
             }
@@ -42,7 +42,7 @@ struct FAQRow: View {
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color("Card").opacity(0.5))
+                .fill(AppColor.card.opacity(0.5))
         )
         .animation(.easeInOut(duration: 0.2), value: isExpanded)
     }

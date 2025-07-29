@@ -18,19 +18,19 @@ struct ChallengeCardView: View {
     
     private var categoryColor: Color {
         switch challenge.category {
-        case .fitness: return Color("ChallengeRed")
-        case .creativity: return Color("PrimaryDark")
-        case .mindfulness: return Color("AppPrimaryColor")
-        case .learning: return Color("Success")
-        case .social: return Color("Accent")
+        case .fitness: return AppColor.challengeRed
+        case .creativity: return AppColor.primaryDark
+        case .mindfulness: return AppColor.appPrimary
+        case .learning: return AppColor.success
+        case .social: return AppColor.accent
         }
     }
     
     private var difficultyColor: Color {
         switch challenge.difficulty {
-        case .easy: return Color("Success")
-        case .medium: return Color("Accent")
-        case .hard: return Color("ChallengeRed")
+        case .easy: return AppColor.success
+        case .medium: return AppColor.accent
+        case .hard: return AppColor.challengeRed
         }
     }
     
@@ -64,24 +64,24 @@ struct ChallengeCardView: View {
                     .font(.title3)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                     .transition(.opacity.combined(with: .scale))
             } else {
                 VStack(spacing: 8) {
                     Image(systemName: Constants.SystemImages.eyeSlash)
                         .font(.title2)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                         .scaleEffect(animateCard ? 1.1 : 1.0)
                         .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: animateCard)
                     
                     Text(Constants.Challenge.challengeHidden)
                         .font(.headline)
                         .fontWeight(.semibold)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                     
                     Text(Constants.Challenge.tapToReveal)
                         .font(.caption)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                         .multilineTextAlignment(.center)
                 }
                 .padding(.vertical, 20)
@@ -92,7 +92,7 @@ struct ChallengeCardView: View {
                 ScrollView {
                     Text(challenge.description)
                         .font(.body)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                         .multilineTextAlignment(.center)
                         .lineSpacing(4)
                         .padding(.horizontal, 4)
@@ -108,7 +108,7 @@ struct ChallengeCardView: View {
                         icon: Constants.SystemImages.clock,
                         title: Constants.Challenge.timeRemaining,
                         value: "\(challenge.estimatedTime) \(Constants.Time.minutes)",
-                        color: Color("AppPrimaryColor")
+                        color: AppColor.appPrimary
                     )
                     
                     DetailItem(
@@ -132,12 +132,12 @@ struct ChallengeCardView: View {
                 HStack(spacing: 12) {
                     Image(systemName: Constants.SystemImages.success)
                         .font(.title2)
-                        .foregroundColor(Color("Success"))
+                        .foregroundColor(AppColor.success)
                     
                     Text(Constants.Success.challengeCompleted)
                         .font(.headline)
                         .fontWeight(.semibold)
-                        .foregroundColor(Color("Success"))
+                        .foregroundColor(AppColor.success)
                 }
                 .transition(.opacity.combined(with: .scale))
             }
@@ -145,7 +145,7 @@ struct ChallengeCardView: View {
         .padding(24)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color("Card"))
+                .fill(AppColor.card)
                 .shadow(color: Color.black.opacity(0.08), radius: 16, x: 0, y: 8)
         )
         .scaleEffect(isRevealed ? 1 : 0.95)

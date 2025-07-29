@@ -20,7 +20,7 @@ struct ProfileHeaderView: View {
             ZStack {
                 // Outer glow ring
                 Circle()
-                    .stroke(Color("AppPrimaryColor").opacity(0.2), lineWidth: 3)
+                    .stroke(AppColor.appPrimary.opacity(0.2), lineWidth: 3)
                     .frame(width: 120, height: 120)
                     .scaleEffect(showGlow ? 1.2 : 1.0)
                     .opacity(showGlow ? 0.0 : 1.0)
@@ -28,7 +28,7 @@ struct ProfileHeaderView: View {
                 
                 // Pulse ring
                 Circle()
-                    .stroke(Color("Accent").opacity(0.3), lineWidth: 2)
+                    .stroke(AppColor.accent.opacity(0.3), lineWidth: 2)
                     .frame(width: 110, height: 110)
                     .scaleEffect(pulseScale)
                     .opacity(pulseScale > 1.0 ? 0.0 : 0.5)
@@ -38,15 +38,15 @@ struct ProfileHeaderView: View {
                 Circle()
                     .fill(LinearGradient(
                         gradient: Gradient(colors: [
-                            Color("AppPrimaryColor"),
-                            Color("Accent"),
-                            Color("Success")
+                            AppColor.appPrimary,
+                            AppColor.accent,
+                            AppColor.success
                         ]),
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ))
                     .frame(width: 100, height: 100)
-                    .shadow(color: Color("AppPrimaryColor").opacity(0.3), radius: 15, x: 0, y: 8)
+                    .shadow(color: AppColor.appPrimary.opacity(0.3), radius: 15, x: 0, y: 8)
                     .scaleEffect(animateAvatar ? 1.0 : 0.8)
                     .rotationEffect(.degrees(animateAvatar ? 0 : -10))
                 
@@ -60,7 +60,7 @@ struct ProfileHeaderView: View {
                 // Achievement badge
                 ZStack {
                     Circle()
-                        .fill(Color("ConfettiYellow"))
+                        .fill(AppColor.confettiYellow)
                         .frame(width: 28, height: 28)
                     
                     Image(systemName: "star.fill")
@@ -77,7 +77,7 @@ struct ProfileHeaderView: View {
                 Text("Challenge Champion")
                     .font(.title2)
                     .fontWeight(.bold)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                     .opacity(animateText ? 1.0 : 0.0)
                     .offset(y: animateText ? 0 : 10)
                 
@@ -86,21 +86,21 @@ struct ProfileHeaderView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "trophy.fill")
                             .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(Color("ConfettiYellow"))
+                            .foregroundColor(AppColor.confettiYellow)
                         
                         Text("Level \(calculateLevel())")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundColor(Color("AppPrimaryColor"))
+                            .foregroundColor(AppColor.appPrimary)
                     }
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color("AppPrimaryColor").opacity(0.08))
+                            .fill(AppColor.appPrimary.opacity(0.08))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color("AppPrimaryColor").opacity(0.15), lineWidth: 1)
+                                    .stroke(AppColor.appPrimary.opacity(0.15), lineWidth: 1)
                             )
                     )
                     
@@ -108,21 +108,21 @@ struct ProfileHeaderView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "heart.fill")
                             .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(Color("ChallengeRed"))
+                            .foregroundColor(AppColor.challengeRed)
                         
                         Text("\(dataManager.userProfile.interests.count) Interests")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundColor(Color("Accent"))
+                            .foregroundColor(AppColor.accent)
                     }
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color("Accent").opacity(0.08))
+                            .fill(AppColor.accent.opacity(0.08))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color("Accent").opacity(0.15), lineWidth: 1)
+                                    .stroke(AppColor.accent.opacity(0.15), lineWidth: 1)
                             )
                     )
                 }
@@ -133,15 +133,15 @@ struct ProfileHeaderView: View {
         .padding(32)
         .background(
             RoundedRectangle(cornerRadius: 28)
-                .fill(Color("Card"))
+                .fill(AppColor.card)
                 .shadow(color: Color.black.opacity(0.08), radius: 20, x: 0, y: 10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 28)
                         .stroke(
                             LinearGradient(
                                 colors: [
-                                    Color("AppPrimaryColor").opacity(0.15),
-                                    Color("Accent").opacity(0.08),
+                                    AppColor.appPrimary.opacity(0.15),
+                                    AppColor.accent.opacity(0.08),
                                     Color.clear
                                 ],
                                 startPoint: .topLeading,

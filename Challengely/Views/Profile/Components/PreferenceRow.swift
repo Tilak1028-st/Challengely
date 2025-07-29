@@ -20,11 +20,11 @@ struct PreferenceRow: View {
                     Text(title)
                         .font(.body)
                         .fontWeight(.medium)
-                        .foregroundColor(Color("TextLabel"))
+                        .foregroundColor(AppColor.textLabel)
                     
                     Text(subtitle)
                         .font(.caption)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                 }
                 
                 Spacer()
@@ -32,13 +32,13 @@ struct PreferenceRow: View {
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.title3)
-                        .foregroundColor(Color("AppPrimaryColor"))
+                        .foregroundColor(AppColor.appPrimary)
                 }
             }
             .padding(12)
             .background(
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(isSelected ? Color("AppPrimaryColor").opacity(0.1) : Color("Card").opacity(0.5))
+                    .fill(isSelected ? AppColor.appPrimary.opacity(0.1) : AppColor.card.opacity(0.5))
             )
         }
         .buttonStyle(PlainButtonStyle())

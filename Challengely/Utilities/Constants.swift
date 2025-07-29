@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 /// Centralized constants for all static strings used throughout the app
 struct Constants {
@@ -241,3 +242,32 @@ struct Constants {
         static let lastAppLaunch = "lastAppLaunch"
     }
 } 
+
+/// Centralized color constants for the app
+struct AppColor {
+    // Primary Colors
+    static let appPrimary = Color("AppPrimaryColor")
+    static let accent = Color("Accent")
+    static let primaryDark = Color("PrimaryDark")
+    
+    // Background Colors
+    static let background = Color("Background")
+    static let card = Color("Card")
+    
+    // Text Colors
+    static let textLabel = Color("TextLabel")
+    static let subtext = Color("Subtext")
+    
+    // Status Colors
+    static let success = Color("Success")
+    static let challengeRed = Color("ChallengeRed")
+    
+    // UI Element Colors
+    static let divider = Color("Divider")
+    static let confettiYellow = Color("ConfettiYellow")
+    static let typingDots = Color("TypingDots")
+    
+    // Chat Bubble Colors
+    static let aiBubble = Color("AIBubble")
+    static let userBubble = Color("UserBubble")
+}

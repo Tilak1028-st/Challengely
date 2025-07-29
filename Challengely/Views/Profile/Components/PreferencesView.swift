@@ -27,7 +27,7 @@ struct PreferencesView: View {
                         Text("Appearance")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("TextLabel"))
+                            .foregroundColor(AppColor.textLabel)
                         
                         VStack(spacing: 12) {
                             ForEach(themes, id: \.self) { theme in
@@ -43,7 +43,7 @@ struct PreferencesView: View {
                     .padding(20)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("Card"))
+                            .fill(AppColor.card)
                     )
                     
                     // Challenge Preferences
@@ -51,7 +51,7 @@ struct PreferencesView: View {
                         Text("Challenge Preferences")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("TextLabel"))
+                            .foregroundColor(AppColor.textLabel)
                         
                         VStack(spacing: 12) {
                             ForEach(frequencies, id: \.self) { frequency in
@@ -67,7 +67,7 @@ struct PreferencesView: View {
                     .padding(20)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("Card"))
+                            .fill(AppColor.card)
                     )
                     
                     // Interaction Preferences
@@ -75,7 +75,7 @@ struct PreferencesView: View {
                         Text("Interaction")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("TextLabel"))
+                            .foregroundColor(AppColor.textLabel)
                         
                         VStack(spacing: 12) {
                             ToggleRow(
@@ -94,7 +94,7 @@ struct PreferencesView: View {
                     .padding(20)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("Card"))
+                            .fill(AppColor.card)
                     )
                 }
                 .padding(20)

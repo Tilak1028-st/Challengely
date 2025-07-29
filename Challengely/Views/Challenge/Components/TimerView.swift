@@ -16,11 +16,11 @@ struct TimerView: View {
             Text("⏱️ \(Constants.Challenge.timeRemaining) Remaining")
                 .font(.caption)
                 .fontWeight(.medium)
-                .foregroundColor(Color("Subtext"))
+                .foregroundColor(AppColor.subtext)
             
             Text(timeString)
                 .font(.system(size: 28, weight: .bold, design: .monospaced))
-                .foregroundColor(Color("AppPrimaryColor"))
+                .foregroundColor(AppColor.appPrimary)
                 .scaleEffect(pulse ? 1.05 : 1.0)
                 .animation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: pulse)
         }
@@ -28,10 +28,10 @@ struct TimerView: View {
         .padding(.horizontal, 20)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color("AppPrimaryColor").opacity(0.1))
+                .fill(AppColor.appPrimary.opacity(0.1))
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color("AppPrimaryColor").opacity(0.2), lineWidth: 1)
+                        .stroke(AppColor.appPrimary.opacity(0.2), lineWidth: 1)
                 )
         )
         .onAppear {

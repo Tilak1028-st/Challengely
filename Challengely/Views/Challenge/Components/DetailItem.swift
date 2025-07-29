@@ -22,12 +22,12 @@ struct DetailItem: View {
             Text(title)
                 .font(.caption)
                 .fontWeight(.medium)
-                .foregroundColor(Color("Subtext"))
+                .foregroundColor(AppColor.subtext)
             
             Text(value)
                 .font(.subheadline)
                 .fontWeight(.bold)
-                .foregroundColor(Color("TextLabel"))
+                .foregroundColor(AppColor.textLabel)
         }
     }
 }

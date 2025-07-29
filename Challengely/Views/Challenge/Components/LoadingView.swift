@@ -14,17 +14,17 @@ struct LoadingView: View {
         VStack(spacing: 20) {
             ProgressView()
                 .scaleEffect(1.5)
-                .tint(Color("AppPrimaryColor"))
+                .tint(AppColor.appPrimary)
             
             Text(Constants.Challenge.loadingChallenge)
                 .font(.title3)
                 .fontWeight(.medium)
-                .foregroundColor(Color("Subtext"))
+                .foregroundColor(AppColor.subtext)
         }
         .padding(40)
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color("Card"))
+                .fill(AppColor.card)
                 .shadow(color: Color.black.opacity(0.08), radius: 15, x: 0, y: 8)
         )
         .scaleEffect(animate ? 1.02 : 1.0)

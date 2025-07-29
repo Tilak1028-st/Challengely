@@ -17,7 +17,7 @@ struct CompletionView: View {
             // Celebration icon
             Image(systemName: "party.popper.fill")
                 .font(.system(size: 40))
-                .foregroundColor(Color("Success"))
+                .foregroundColor(AppColor.success)
                 .scaleEffect(animateCompletion ? 1.2 : 1.0)
                 .animation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true), value: animateCompletion)
             
@@ -25,11 +25,11 @@ struct CompletionView: View {
                 Text("🎉 Congratulations! 🎉")
                     .font(.title2)
                     .fontWeight(.bold)
-                    .foregroundColor(Color("Success"))
+                    .foregroundColor(AppColor.success)
                 
                 Text("You've completed today's challenge!")
                     .font(.body)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
                     .multilineTextAlignment(.center)
                     .lineSpacing(4)
             }
@@ -47,19 +47,19 @@ struct CompletionView: View {
                 .padding(.vertical, 18)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
-                        .fill(Color("AppPrimaryColor"))
+                        .fill(AppColor.appPrimary)
                 )
-                .shadow(color: Color("AppPrimaryColor").opacity(0.3), radius: 8, x: 0, y: 4)
+                .shadow(color: AppColor.appPrimary.opacity(0.3), radius: 8, x: 0, y: 4)
             }
             .buttonStyle(PlainButtonStyle())
         }
         .padding(24)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color("Success").opacity(0.08))
+                .fill(AppColor.success.opacity(0.08))
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color("Success").opacity(0.2), lineWidth: 2)
+                        .stroke(AppColor.success.opacity(0.2), lineWidth: 2)
                 )
         )
         .onAppear {

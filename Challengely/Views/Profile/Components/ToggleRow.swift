@@ -18,22 +18,22 @@ struct ToggleRow: View {
                 Text(title)
                     .font(.body)
                     .fontWeight(.medium)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                 
                 Text(subtitle)
                     .font(.caption)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
             }
             
             Spacer()
             
             Toggle("", isOn: $isOn)
-                .toggleStyle(SwitchToggleStyle(tint: Color("AppPrimaryColor")))
+                .toggleStyle(SwitchToggleStyle(tint: AppColor.appPrimary))
         }
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color("Card").opacity(0.5))
+                .fill(AppColor.card.opacity(0.5))
         )
     }
 }

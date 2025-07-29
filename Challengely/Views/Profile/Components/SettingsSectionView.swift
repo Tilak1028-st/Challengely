@@ -17,14 +17,14 @@ struct SettingsSectionView: View {
             Text("Settings")
                 .font(.title2)
                 .fontWeight(.bold)
-                .foregroundColor(Color("TextLabel"))
+                .foregroundColor(AppColor.textLabel)
             
             VStack(spacing: 8) {
                 SettingsRow(
                     icon: "chart.bar.fill",
                     title: "Progress Insights",
                     subtitle: "View detailed analytics",
-                    color: Color("Success"),
+                    color: AppColor.success,
                     action: { showingProgressInsights = true }
                 )
                 
@@ -32,7 +32,7 @@ struct SettingsSectionView: View {
                     icon: "gear",
                     title: "Preferences",
                     subtitle: "Customize your experience",
-                    color: Color("AppPrimaryColor"),
+                    color: AppColor.appPrimary,
                     action: { showingPreferences = true }
                 )
                 
@@ -40,7 +40,7 @@ struct SettingsSectionView: View {
                     icon: "questionmark.circle.fill",
                     title: "Help & Support",
                     subtitle: "Get assistance",
-                    color: Color("Subtext"),
+                    color: AppColor.subtext,
                     action: { showingHelpSupport = true }
                 )
             }

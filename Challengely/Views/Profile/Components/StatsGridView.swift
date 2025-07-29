@@ -21,7 +21,7 @@ struct StatsGridView: View {
                 value: "\(dataManager.userProfile.currentStreak)",
                 subtitle: "days",
                 icon: "flame.fill",
-                color: Color("ChallengeRed"),
+                color: AppColor.challengeRed,
                 animate: animateStats
             )
             
@@ -30,7 +30,7 @@ struct StatsGridView: View {
                 value: "\(dataManager.userProfile.totalChallengesCompleted)",
                 subtitle: "challenges",
                 icon: "checkmark.circle.fill",
-                color: Color("Success"),
+                color: AppColor.success,
                 animate: animateStats
             )
             
@@ -39,7 +39,7 @@ struct StatsGridView: View {
                 value: "\(dataManager.userProfile.longestStreak)",
                 subtitle: "days",
                 icon: "trophy.fill",
-                color: Color("Accent"),
+                color: AppColor.accent,
                 animate: animateStats
             )
             
@@ -48,7 +48,7 @@ struct StatsGridView: View {
                 value: "\(calculateSuccessRate())%",
                 subtitle: "completion",
                 icon: "chart.line.uptrend.xyaxis",
-                color: Color("AppPrimaryColor"),
+                color: AppColor.appPrimary,
                 animate: animateStats
             )
         }

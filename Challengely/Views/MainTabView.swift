@@ -31,7 +31,7 @@ struct MainTabView: View {
                     Text(Constants.Tab.profile)
                 }
         }
-        .accentColor(Color("AppPrimaryColor"))
+        .accentColor(AppColor.appPrimary)
         .onAppear {
             // Configure tab bar appearance for consistent styling
             let appearance = UITabBarAppearance()

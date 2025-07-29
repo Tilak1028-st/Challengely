@@ -19,7 +19,7 @@ struct AchievementsView: View {
                 title: "Week Warrior",
                 description: "Maintained a 7-day streak",
                 icon: "flame.fill",
-                color: Color("ChallengeRed"),
+                color: AppColor.challengeRed,
                 isEarned: true
             ))
         }
@@ -29,7 +29,7 @@ struct AchievementsView: View {
                 title: "Monthly Master",
                 description: "Achieved a 30-day streak",
                 icon: "calendar.circle.fill",
-                color: Color("Accent"),
+                color: AppColor.accent,
                 isEarned: true
             ))
         }
@@ -40,7 +40,7 @@ struct AchievementsView: View {
                 title: "Dedicated Learner",
                 description: "Completed 10 challenges",
                 icon: "graduationcap.fill",
-                color: Color("Success"),
+                color: AppColor.success,
                 isEarned: true
             ))
         }
@@ -50,7 +50,7 @@ struct AchievementsView: View {
                 title: "Challenge Champion",
                 description: "Completed 50 challenges",
                 icon: "crown.fill",
-                color: Color("AppPrimaryColor"),
+                color: AppColor.appPrimary,
                 isEarned: true
             ))
         }
@@ -64,35 +64,35 @@ struct AchievementsView: View {
                 Text("Achievements")
                     .font(.title2)
                     .fontWeight(.bold)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                 
                 Spacer()
                 
                 Text("\(achievements.count) earned")
                     .font(.caption)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
             }
             
             if achievements.isEmpty {
                 VStack(spacing: 12) {
                     Image(systemName: "star.circle")
                         .font(.system(size: 40))
-                        .foregroundColor(Color("Subtext").opacity(0.5))
+                        .foregroundColor(AppColor.subtext.opacity(0.5))
                     
                     Text("No achievements yet")
                         .font(.headline)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                     
                     Text("Complete challenges to earn achievements!")
                         .font(.caption)
-                        .foregroundColor(Color("Subtext").opacity(0.7))
+                        .foregroundColor(AppColor.subtext.opacity(0.7))
                         .multilineTextAlignment(.center)
                 }
                 .padding(30)
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
-                        .fill(Color("Card").opacity(0.5))
+                        .fill(AppColor.card.opacity(0.5))
                 )
             } else {
                 LazyVGrid(columns: [

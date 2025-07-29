@@ -31,9 +31,9 @@ struct ChatView: View {
                 // Background gradient
                 LinearGradient(
                     gradient: Gradient(colors: [
-                        Color("AppPrimaryColor").opacity(0.08),
-                        Color("Accent").opacity(0.05),
-                        Color("PrimaryDark").opacity(0.03)
+                        AppColor.appPrimary.opacity(0.08),
+                        AppColor.accent.opacity(0.05),
+                        AppColor.primaryDark.opacity(0.03)
                     ]),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing

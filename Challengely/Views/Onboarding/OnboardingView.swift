@@ -16,9 +16,9 @@ struct OnboardingView: View {
             // Enhanced gradient background
             LinearGradient(
                 gradient: Gradient(colors: [
-                    Color("AppPrimaryColor").opacity(0.1),
-                    Color("Accent").opacity(0.1),
-                    Color("PrimaryDark").opacity(0.05)
+                    AppColor.appPrimary.opacity(0.1),
+                    AppColor.accent.opacity(0.1),
+                    AppColor.primaryDark.opacity(0.05)
                 ]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -33,7 +33,7 @@ struct OnboardingView: View {
                         completeOnboarding()
                     }
                     .font(.subheadline)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
                     .underline()
                     .opacity(showMotivationalText ? 1 : 0)
                     .animation(.easeInOut(duration: 0.5).delay(1.0), value: showMotivationalText)
@@ -81,7 +81,7 @@ struct OnboardingView: View {
                 if showMotivationalText {
                     Text(motivationalText)
                         .font(.caption)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 20)
                         .lineLimit(2)

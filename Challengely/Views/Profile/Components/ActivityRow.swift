@@ -25,11 +25,11 @@ struct ActivityRow: View {
                 Text(title)
                     .font(.caption)
                     .fontWeight(.medium)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                 
                 Text(subtitle)
                     .font(.caption2)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
                     .lineLimit(1)
             }
             
@@ -37,12 +37,12 @@ struct ActivityRow: View {
             
             Text(time, style: .time)
                 .font(.caption2)
-                .foregroundColor(Color("Subtext"))
+                .foregroundColor(AppColor.subtext)
         }
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color("Card"))
+                .fill(AppColor.card)
         )
     }
 }

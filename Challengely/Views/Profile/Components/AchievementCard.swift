@@ -20,12 +20,12 @@ struct AchievementCard: View {
                 Text(achievement.title)
                     .font(.caption)
                     .fontWeight(.semibold)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                     .multilineTextAlignment(.center)
                 
                 Text(achievement.description)
                     .font(.caption2)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
             }
@@ -34,7 +34,7 @@ struct AchievementCard: View {
         .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color("Card"))
+                .fill(AppColor.card)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(achievement.color.opacity(0.3), lineWidth: 1)

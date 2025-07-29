@@ -15,7 +15,7 @@ struct RecentActivityView: View {
             Text("Recent Activity")
                 .font(.title2)
                 .fontWeight(.bold)
-                .foregroundColor(Color("TextLabel"))
+                .foregroundColor(AppColor.textLabel)
             
             VStack(spacing: 12) {
                 ForEach(0..<min(3, dataManager.chatMessages.count), id: \.self) { index in
@@ -25,14 +25,14 @@ struct RecentActivityView: View {
                         title: message.isFromUser ? "You sent a message" : "Assistant responded",
                         subtitle: message.content.prefix(50) + (message.content.count > 50 ? "..." : ""),
                         time: message.timestamp,
-                        color: message.isFromUser ? Color("Accent") : Color("AppPrimaryColor")
+                        color: message.isFromUser ? AppColor.accent : AppColor.appPrimary
                     )
                 }
                 
                 if dataManager.chatMessages.isEmpty {
                     Text("No recent activity")
                         .font(.caption)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 20)
                 }

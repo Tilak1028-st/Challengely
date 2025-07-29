@@ -24,11 +24,11 @@ struct InsightRow: View {
                 Text(title)
                     .font(.body)
                     .fontWeight(.medium)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                 
                 Text(value)
                     .font(.caption)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
             }
             
             Spacer()
@@ -36,7 +36,7 @@ struct InsightRow: View {
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color("Card").opacity(0.5))
+                .fill(AppColor.card.opacity(0.5))
         )
     }
 }

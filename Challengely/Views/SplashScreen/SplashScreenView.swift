@@ -33,10 +33,10 @@ struct SplashScreenView: View {
             // Background gradient
             LinearGradient(
                 gradient: Gradient(colors: [
-                    Color("AppPrimaryColor").opacity(0.15),
-                    Color("Accent").opacity(0.10),
-                    Color("PrimaryDark").opacity(0.08),
-                    Color("Background").opacity(0.95)
+                    AppColor.appPrimary.opacity(0.15),
+                    AppColor.accent.opacity(0.10),
+                    AppColor.primaryDark.opacity(0.08),
+                    AppColor.background.opacity(0.95)
                 ]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -51,9 +51,9 @@ struct SplashScreenView: View {
                         .fill(
                             LinearGradient(
                                 colors: [
-                                    Color("AppPrimaryColor").opacity(0.2 - Double(index) * 0.05),
-                                    Color("Accent").opacity(0.15 - Double(index) * 0.03),
-                                    Color("Success").opacity(0.1 - Double(index) * 0.02)
+                                    AppColor.appPrimary.opacity(0.2 - Double(index) * 0.05),
+                                    AppColor.accent.opacity(0.15 - Double(index) * 0.03),
+                                    AppColor.success.opacity(0.1 - Double(index) * 0.02)
                                 ],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
@@ -73,15 +73,15 @@ struct SplashScreenView: View {
                     Group {
                         if index % 3 == 0 {
                             Circle()
-                                .fill(Color("AppPrimaryColor").opacity(0.08))
+                                .fill(AppColor.appPrimary.opacity(0.08))
                                 .frame(width: CGFloat.random(in: 20...60), height: CGFloat.random(in: 20...60))
                         } else if index % 3 == 1 {
                             RoundedRectangle(cornerRadius: 8)
-                                .fill(Color("Accent").opacity(0.06))
+                                .fill(AppColor.accent.opacity(0.06))
                                 .frame(width: CGFloat.random(in: 30...50), height: CGFloat.random(in: 30...50))
                         } else {
                             SplashTriangle()
-                                .fill(Color("Success").opacity(0.05))
+                                .fill(AppColor.success.opacity(0.05))
                                 .frame(width: CGFloat.random(in: 25...45), height: CGFloat.random(in: 25...45))
                         }
                     }
@@ -128,7 +128,7 @@ struct SplashScreenView: View {
                 ZStack {
                     // Pulse ring
                     Circle()
-                        .stroke(Color("AppPrimaryColor").opacity(0.4), lineWidth: 2)
+                        .stroke(AppColor.appPrimary.opacity(0.4), lineWidth: 2)
                         .frame(width: 120, height: 120)
                         .scaleEffect(showPulse ? 1.5 : 1.0)
                         .opacity(showPulse ? 0.0 : 1.0)
@@ -138,28 +138,28 @@ struct SplashScreenView: View {
                     ZStack {
                         // Trophy base
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(Color("AppPrimaryColor"))
+                            .fill(AppColor.appPrimary)
                             .frame(width: 40, height: 60)
                             .offset(y: 15)
                         
                         // Trophy handles
                         ForEach(0..<2) { index in
                             RoundedRectangle(cornerRadius: 4)
-                                .fill(Color("AppPrimaryColor"))
+                                .fill(AppColor.appPrimary)
                                 .frame(width: 8, height: 20)
                                 .offset(x: index == 0 ? -24 : 24, y: 5)
                         }
                         
                         // Trophy top
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color("AppPrimaryColor"))
+                            .fill(AppColor.appPrimary)
                             .frame(width: 50, height: 35)
                             .offset(y: -10)
                         
                         // Star on top
                         Image(systemName: "star.fill")
                             .font(.system(size: 16, weight: .bold))
-                            .foregroundColor(Color("ConfettiYellow"))
+                            .foregroundColor(AppColor.confettiYellow)
                             .offset(y: -25)
                             .scaleEffect(showGlow ? 1.3 : 1.0)
                             .rotationEffect(.degrees(showGlow ? 360 : 0))
@@ -168,7 +168,7 @@ struct SplashScreenView: View {
                         // Orbiting particles
                         ForEach(0..<6) { index in
                             Circle()
-                                .fill(Color("Accent"))
+                                .fill(AppColor.accent)
                                 .frame(width: 4, height: 4)
                                 .offset(
                                     x: CGFloat(cos(Double(index) * .pi / 3)) * 35,
@@ -187,10 +187,10 @@ struct SplashScreenView: View {
                     .scaleEffect(logoScale)
                     .opacity(logoOpacity)
                     .rotationEffect(.degrees(logoRotation))
-                    .shadow(color: Color("AppPrimaryColor").opacity(0.3), radius: 10, x: 0, y: 5)
+                    .shadow(color: AppColor.appPrimary.opacity(0.3), radius: 10, x: 0, y: 5)
                     .overlay(
                         Circle()
-                            .fill(Color("AppPrimaryColor").opacity(0.2))
+                            .fill(AppColor.appPrimary.opacity(0.2))
                             .blur(radius: showGlow ? 20 : 0)
                             .scaleEffect(showGlow ? 1.5 : 0.8)
                             .opacity(showGlow ? 0.6 : 0.0)
@@ -201,19 +201,19 @@ struct SplashScreenView: View {
                 // App title
                 Text(Constants.App.name)
                     .font(.system(size: 36, weight: .bold, design: .rounded))
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                     .opacity(titleOpacity)
                     .offset(y: titleOffset)
-                    .shadow(color: Color("AppPrimaryColor").opacity(0.2), radius: 5, x: 0, y: 2)
+                    .shadow(color: AppColor.appPrimary.opacity(0.2), radius: 5, x: 0, y: 2)
                 
                 // App subtitle
                 Text(Constants.App.tagline)
                     .font(.system(size: 18, weight: .medium))
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
                     .opacity(subtitleOpacity)
                     .offset(y: subtitleOffset)
                     .multilineTextAlignment(.center)
-                    .shadow(color: Color("AppPrimaryColor").opacity(0.1), radius: 3, x: 0, y: 1)
+                    .shadow(color: AppColor.appPrimary.opacity(0.1), radius: 3, x: 0, y: 1)
                 
                 Spacer()
                 
@@ -221,7 +221,7 @@ struct SplashScreenView: View {
                 HStack(spacing: 8) {
                     ForEach(0..<3, id: \.self) { index in
                         Circle()
-                            .fill(Color("AppPrimaryColor"))
+                            .fill(AppColor.appPrimary)
                             .frame(width: 8, height: 8)
                             .scaleEffect(showPulse ? 1.2 : 0.8)
                             .opacity(showPulse ? 0.6 : 1.0)
@@ -314,42 +314,4 @@ struct SplashScreenView: View {
     }
 }
 
-// MARK: - Custom Shapes
 
-struct WaveShape: Shape {
-    let frequency: Double
-    let amplitude: CGFloat
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let width = rect.width
-        let height = rect.height
-        let midHeight = height / 2
-        
-        path.move(to: CGPoint(x: 0, y: midHeight))
-        
-        for x in stride(from: 0, through: width, by: 1) {
-            let relativeX = x / width
-            let sine = sin(relativeX * frequency * 2 * .pi)
-            let y = midHeight + amplitude * CGFloat(sine)
-            path.addLine(to: CGPoint(x: x, y: y))
-        }
-        
-        path.addLine(to: CGPoint(x: width, y: height))
-        path.addLine(to: CGPoint(x: 0, y: height))
-        path.closeSubpath()
-        
-        return path
-    }
-}
-
-struct SplashTriangle: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        path.closeSubpath()
-        return path
-    }
-} 

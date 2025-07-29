@@ -19,17 +19,17 @@ struct HeaderView: View {
                     Text("🔥 Current Streak")
                         .font(.caption)
                         .fontWeight(.medium)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                     
                     HStack(alignment: .bottom, spacing: 4) {
                         Text("\(dataManager.userProfile.currentStreak)")
                             .font(.system(size: 28, weight: .bold, design: .rounded))
-                            .foregroundColor(Color("AppPrimaryColor"))
+                            .foregroundColor(AppColor.appPrimary)
                         
                         Text(Constants.Time.days)
                             .font(.subheadline)
                             .fontWeight(.medium)
-                            .foregroundColor(Color("Subtext"))
+                            .foregroundColor(AppColor.subtext)
                     }
                 }
                 
@@ -39,12 +39,12 @@ struct HeaderView: View {
                     Text("✨ Total Completed")
                         .font(.caption)
                         .fontWeight(.medium)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                     
                     Text("\(dataManager.userProfile.totalChallengesCompleted)")
                         .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(Color("AppPrimaryColor"))
+                        .foregroundColor(AppColor.appPrimary)
                 }
             }
             
@@ -53,14 +53,14 @@ struct HeaderView: View {
                 HStack {
                     Text("Progress to longest streak")
                         .font(.caption)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                     
                     Spacer()
                     
                     Text("\(dataManager.userProfile.currentStreak)/\(max(dataManager.userProfile.longestStreak, 1))")
                         .font(.caption)
                         .fontWeight(.medium)
-                        .foregroundColor(Color("AppPrimaryColor"))
+                        .foregroundColor(AppColor.appPrimary)
                 }
                 
                 ProgressView(value: Double(dataManager.userProfile.currentStreak), total: Double(max(dataManager.userProfile.longestStreak, 1)))
@@ -70,7 +70,7 @@ struct HeaderView: View {
         .padding(20)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color("Card"))
+                .fill(AppColor.card)
                 .shadow(color: Color.black.opacity(0.08), radius: 12, x: 0, y: 6)
         )
         .scaleEffect(animateProgress ? 1.02 : 1.0)

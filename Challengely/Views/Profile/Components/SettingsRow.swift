@@ -26,23 +26,23 @@ struct SettingsRow: View {
                     Text(title)
                         .font(.body)
                         .fontWeight(.medium)
-                        .foregroundColor(Color("TextLabel"))
+                        .foregroundColor(AppColor.textLabel)
                     
                     Text(subtitle)
                         .font(.caption)
-                        .foregroundColor(Color("Subtext"))
+                        .foregroundColor(AppColor.subtext)
                 }
                 
                 Spacer()
                 
                 Image(systemName: "chevron.right")
                     .font(.caption)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
             }
             .padding(16)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color("Card"))
+                    .fill(AppColor.card)
             )
         }
         .buttonStyle(PlainButtonStyle())

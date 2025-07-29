@@ -30,9 +30,9 @@ struct ActionButtonsView: View {
                     .padding(.vertical, 18)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("AppPrimaryColor"))
+                            .fill(AppColor.appPrimary)
                     )
-                    .shadow(color: Color("AppPrimaryColor").opacity(0.3), radius: 8, x: 0, y: 4)
+                    .shadow(color: AppColor.appPrimary.opacity(0.3), radius: 8, x: 0, y: 4)
                 }
                 .buttonStyle(PlainButtonStyle())
             } else if !isAccepted {
@@ -49,9 +49,9 @@ struct ActionButtonsView: View {
                     .padding(.vertical, 18)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("Accent"))
+                            .fill(AppColor.accent)
                     )
-                    .shadow(color: Color("Accent").opacity(0.3), radius: 8, x: 0, y: 4)
+                    .shadow(color: AppColor.accent.opacity(0.3), radius: 8, x: 0, y: 4)
                 }
                 .buttonStyle(PlainButtonStyle())
             } else {
@@ -68,9 +68,9 @@ struct ActionButtonsView: View {
                     .padding(.vertical, 18)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("Success"))
+                            .fill(AppColor.success)
                     )
-                    .shadow(color: Color("Success").opacity(0.3), radius: 8, x: 0, y: 4)
+                    .shadow(color: AppColor.success.opacity(0.3), radius: 8, x: 0, y: 4)
                 }
                 .buttonStyle(PlainButtonStyle())
             }

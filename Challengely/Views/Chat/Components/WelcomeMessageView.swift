@@ -15,7 +15,7 @@ struct WelcomeMessageView: View {
             // Assistant avatar
             Image(systemName: Constants.SystemImages.robot)
                 .font(.system(size: 50, weight: .semibold))
-                .foregroundColor(Color("AppPrimaryColor"))
+                .foregroundColor(AppColor.appPrimary)
                 .scaleEffect(animateWelcome ? 1.1 : 1.0)
                 .animation(.easeInOut(duration: 2.0).repeatForever(autoreverses: true), value: animateWelcome)
             
@@ -24,7 +24,7 @@ struct WelcomeMessageView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                 
                 Text(Constants.Chat.welcomeMessage)
                     .font(.body)
@@ -36,7 +36,7 @@ struct WelcomeMessageView: View {
         .padding(30)
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color("Card"))
+                .fill(AppColor.card)
                 .shadow(color: Color.black.opacity(0.08), radius: 15, x: 0, y: 8)
         )
         .onAppear {

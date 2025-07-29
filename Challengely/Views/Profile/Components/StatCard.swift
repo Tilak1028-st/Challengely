@@ -27,24 +27,24 @@ struct StatCard: View {
                 Text(value)
                     .font(.title)
                     .fontWeight(.bold)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                 
                 Text(title)
                     .font(.caption)
                     .fontWeight(.medium)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
                     .multilineTextAlignment(.center)
                 
                 Text(subtitle)
                     .font(.caption2)
-                    .foregroundColor(Color("Subtext").opacity(0.7))
+                    .foregroundColor(AppColor.subtext.opacity(0.7))
             }
         }
         .padding(20)
         .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color("Card"))
+                .fill(AppColor.card)
                 .shadow(color: Color.black.opacity(0.06), radius: 8, x: 0, y: 4)
         )
     }

@@ -19,17 +19,17 @@ struct CategoryCard: View {
             Text(interest.rawValue)
                 .font(.caption)
                 .fontWeight(.medium)
-                .foregroundColor(Color("TextLabel"))
+                .foregroundColor(AppColor.textLabel)
             
             Text("3 completed")
                 .font(.caption2)
-                .foregroundColor(Color("Subtext"))
+                .foregroundColor(AppColor.subtext)
         }
         .padding(12)
         .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color("Card").opacity(0.5))
+                .fill(AppColor.card.opacity(0.5))
         )
     }
 }

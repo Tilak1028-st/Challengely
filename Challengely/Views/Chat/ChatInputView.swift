@@ -28,11 +28,11 @@ struct ChatInputView: View {
     
     private var characterCountColor: Color {
         if characterCount > characterLimit {
-            return Color("ChallengeRed")
+            return AppColor.challengeRed
         } else if characterCount > Int(Double(characterLimit) * 0.8) {
-            return Color("Accent")
+            return AppColor.accent
         } else {
-            return Color("Subtext")
+            return AppColor.subtext
         }
     }
     
@@ -68,12 +68,12 @@ struct ChatInputView: View {
                         .frame(height: self.obj.size < 120 ? self.obj.size : 120)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 2)
-                        .background(Color("Card"))
+                        .background(AppColor.card)
                         .clipShape(RoundedRectangle(cornerRadius: 24))
                         .overlay(
                             RoundedRectangle(cornerRadius: 24)
                                 .stroke(
-                                    isFocused ? Color("AppPrimaryColor").opacity(0.3) : Color("Divider"),
+                                    isFocused ? AppColor.appPrimary.opacity(0.3) : AppColor.divider,
                                     lineWidth: isFocused ? 1.5 : 1
                                 )
                         )
@@ -103,8 +103,8 @@ struct ChatInputView: View {
                     .frame(width: 44, height: 44)
                     .background(
                         messageText.isEmpty || isOverLimit || isSending
-                        ? Color("Subtext").opacity(0.3)
-                        : Color("AppPrimaryColor")
+                        ? AppColor.subtext.opacity(0.3)
+                        : AppColor.appPrimary
                     )
                     .clipShape(Circle())
                     .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
@@ -117,7 +117,7 @@ struct ChatInputView: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
         .background(
-            Color("Background")
+            AppColor.background
                 .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: -2)
         )
     }

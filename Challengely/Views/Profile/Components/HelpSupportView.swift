@@ -19,7 +19,7 @@ struct HelpSupportView: View {
                         Text("Frequently Asked Questions")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("TextLabel"))
+                            .foregroundColor(AppColor.textLabel)
                         
                         VStack(spacing: 12) {
                             FAQRow(
@@ -46,7 +46,7 @@ struct HelpSupportView: View {
                     .padding(20)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("Card"))
+                            .fill(AppColor.card)
                     )
                     
                     // Contact Section
@@ -54,35 +54,35 @@ struct HelpSupportView: View {
                         Text("Get in Touch")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("TextLabel"))
+                            .foregroundColor(AppColor.textLabel)
                         
                         VStack(spacing: 12) {
                             ContactRow(
                                 icon: "envelope.fill",
                                 title: "Email Support",
                                 subtitle: "support@challengely.com",
-                                color: Color("AppPrimaryColor")
+                                color: AppColor.appPrimary
                             )
                             
                             ContactRow(
                                 icon: "message.fill",
                                 title: "Live Chat",
                                 subtitle: "Available 24/7",
-                                color: Color("Success")
+                                color: AppColor.success
                             )
                             
                             ContactRow(
                                 icon: "globe",
                                 title: "Website",
                                 subtitle: "challengely.com",
-                                color: Color("Accent")
+                                color: AppColor.accent
                             )
                         }
                     }
                     .padding(20)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("Card"))
+                            .fill(AppColor.card)
                     )
                 }
                 .padding(20)

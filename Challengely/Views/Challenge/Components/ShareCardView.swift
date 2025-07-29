@@ -18,14 +18,14 @@ struct ShareCardView: View {
                 VStack(spacing: 12) {
                     Image(systemName: "trophy.fill")
                         .font(.system(size: 36))
-                        .foregroundColor(Color("ConfettiYellow"))
+                        .foregroundColor(AppColor.confettiYellow)
                         .scaleEffect(animateElements ? 1.1 : 1.0)
                         .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: animateElements)
                     
                     Text(Constants.Success.challengeCompleted)
                         .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(Color("TextLabel"))
+                        .foregroundColor(AppColor.textLabel)
                 }
             
             // Challenge info
@@ -34,7 +34,7 @@ struct ShareCardView: View {
                     .font(.headline)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                     .lineSpacing(4)
                 
                 HStack(spacing: 30) {
@@ -42,24 +42,24 @@ struct ShareCardView: View {
                         Text("\(challenge.estimatedTime)")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("AppPrimaryColor"))
+                            .foregroundColor(AppColor.appPrimary)
                         
                         Text(Constants.Time.minutes)
                             .font(.caption)
                             .fontWeight(.medium)
-                            .foregroundColor(Color("Subtext"))
+                            .foregroundColor(AppColor.subtext)
                     }
                     
                     VStack(spacing: 8) {
                         Text("\(streak)")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("Accent"))
+                            .foregroundColor(AppColor.accent)
                         
                         Text("\(Constants.Time.days) streak")
                             .font(.caption)
                             .fontWeight(.medium)
-                            .foregroundColor(Color("Subtext"))
+                            .foregroundColor(AppColor.subtext)
                     }
                 }
             }
@@ -69,20 +69,20 @@ struct ShareCardView: View {
                 Text(Constants.App.name)
                     .font(.caption)
                     .fontWeight(.bold)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
                 
                 Text(Constants.App.tagline)
                     .font(.caption2)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
             }
         }
         .padding(24)
         .background(
             LinearGradient(
                 gradient: Gradient(colors: [
-                    Color("AppPrimaryColor").opacity(0.08),
-                    Color("Accent").opacity(0.05),
-                    Color("PrimaryDark").opacity(0.03)
+                    AppColor.appPrimary.opacity(0.08),
+                    AppColor.accent.opacity(0.05),
+                    AppColor.primaryDark.opacity(0.03)
                 ]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -90,7 +90,7 @@ struct ShareCardView: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(Color("AppPrimaryColor").opacity(0.2), lineWidth: 2)
+                .stroke(AppColor.appPrimary.opacity(0.2), lineWidth: 2)
         )
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .onAppear {

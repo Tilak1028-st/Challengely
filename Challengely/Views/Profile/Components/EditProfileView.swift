@@ -22,7 +22,7 @@ struct EditProfileView: View {
                 Spacer()
                 
                 Text("Profile editing coming soon!")
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
                 
                 Spacer()
             }

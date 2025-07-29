@@ -11,13 +11,13 @@ struct ConfettiView: View {
     @State private var textScale: CGFloat = 0.5
     
     let colors: [Color] = [
-        Color("AppPrimaryColor"),
-        Color("Accent"),
-        Color("Success"),
-        Color("ConfettiYellow"),
-        Color("ChallengeRed"),
-        Color("PrimaryDark"),
-        Color("UserBubble"),
+        AppColor.appPrimary,
+        AppColor.accent,
+        AppColor.success,
+        AppColor.confettiYellow,
+        AppColor.challengeRed,
+        AppColor.primaryDark,
+        AppColor.userBubble,
         .white,
         .orange,
         .purple,
@@ -31,9 +31,9 @@ struct ConfettiView: View {
             // Celebration background glow
             RadialGradient(
                 gradient: Gradient(colors: [
-                    Color("AppPrimaryColor").opacity(0.4),
-                    Color("Accent").opacity(0.3),
-                    Color("Success").opacity(0.2),
+                    AppColor.appPrimary.opacity(0.4),
+                    AppColor.accent.opacity(0.3),
+                    AppColor.success.opacity(0.2),
                     Color.clear
                 ]),
                 center: .center,
@@ -65,7 +65,7 @@ struct ConfettiView: View {
                     .font(.system(size: 32, weight: .bold, design: .rounded))
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.white, Color("ConfettiYellow"), .white],
+                            colors: [.white, AppColor.confettiYellow, .white],
                             startPoint: .leading,
                             endPoint: .trailing
                         )

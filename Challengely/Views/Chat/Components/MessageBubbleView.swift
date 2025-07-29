@@ -23,7 +23,7 @@ struct MessageBubbleView: View {
                         .padding(.vertical, 12)
                         .background(
                             RoundedRectangle(cornerRadius: 18)
-                                .fill(Color("AppPrimaryColor"))
+                                .fill(AppColor.appPrimary)
                         )
                     
                     // User avatar
@@ -34,7 +34,7 @@ struct MessageBubbleView: View {
                         .background(
                             Circle()
                                 .fill(LinearGradient(
-                                    gradient: Gradient(colors: [Color("Accent"), Color("Success")]),
+                                    gradient: Gradient(colors: [AppColor.accent, AppColor.success]),
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ))
@@ -50,7 +50,7 @@ struct MessageBubbleView: View {
                         .background(
                             Circle()
                                 .fill(LinearGradient(
-                                    gradient: Gradient(colors: [Color("AppPrimaryColor"), Color("Accent")]),
+                                    gradient: Gradient(colors: [AppColor.appPrimary, AppColor.accent]),
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ))
@@ -58,12 +58,12 @@ struct MessageBubbleView: View {
                     
                     Text(message.content)
                         .font(.body)
-                        .foregroundColor(Color("TextLabel"))
+                        .foregroundColor(AppColor.textLabel)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
                         .background(
                             RoundedRectangle(cornerRadius: 18)
-                                .fill(Color("Card"))
+                                .fill(AppColor.card)
                         )
                 }
                 

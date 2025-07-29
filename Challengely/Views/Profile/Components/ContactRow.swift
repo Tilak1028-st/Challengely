@@ -24,23 +24,23 @@ struct ContactRow: View {
                 Text(title)
                     .font(.body)
                     .fontWeight(.medium)
-                    .foregroundColor(Color("TextLabel"))
+                    .foregroundColor(AppColor.textLabel)
                 
                 Text(subtitle)
                     .font(.caption)
-                    .foregroundColor(Color("Subtext"))
+                    .foregroundColor(AppColor.subtext)
             }
             
             Spacer()
             
             Image(systemName: "chevron.right")
                 .font(.caption)
-                .foregroundColor(Color("Subtext"))
+                .foregroundColor(AppColor.subtext)
         }
         .padding(12)
         .background(
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color("Card").opacity(0.5))
+                .fill(AppColor.card.opacity(0.5))
         )
     }
 }

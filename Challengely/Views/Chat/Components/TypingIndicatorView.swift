@@ -23,7 +23,7 @@ struct TypingIndicatorView: View {
                 .background(
                     Circle()
                         .fill(LinearGradient(
-                            gradient: Gradient(colors: [Color("AppPrimaryColor"), Color("Accent")]),
+                            gradient: Gradient(colors: [AppColor.appPrimary, AppColor.accent]),
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ))
@@ -41,7 +41,7 @@ struct TypingIndicatorView: View {
             .padding(.vertical, 12)
             .background(
                 RoundedRectangle(cornerRadius: 18)
-                    .fill(Color("Card"))
+                    .fill(AppColor.card)
             )
             
             Spacer(minLength: 60)

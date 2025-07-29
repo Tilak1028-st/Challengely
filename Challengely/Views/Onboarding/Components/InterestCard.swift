@@ -17,11 +17,11 @@ struct InterestCard: View {
     
     private var interestColor: Color {
         switch interest {
-        case .fitness: return Color("ChallengeRed")
-        case .creativity: return Color("PrimaryDark")
-        case .mindfulness: return Color("AppPrimaryColor")
-        case .learning: return Color("Success")
-        case .social: return Color("Accent")
+        case .fitness: return AppColor.challengeRed
+        case .creativity: return AppColor.primaryDark
+        case .mindfulness: return AppColor.appPrimary
+        case .learning: return AppColor.success
+        case .social: return AppColor.accent
         }
     }
     
@@ -35,7 +35,7 @@ struct InterestCard: View {
                 Text(interest.rawValue)
                     .font(.headline)
                     .fontWeight(.semibold)
-                    .foregroundColor(isSelected ? .white : Color("TextLabel"))
+                    .foregroundColor(isSelected ? .white : AppColor.textLabel)
             }
             .frame(height: 105)
             .frame(maxWidth: .infinity)

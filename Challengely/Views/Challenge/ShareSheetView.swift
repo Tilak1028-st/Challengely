@@ -12,9 +12,9 @@ struct ShareSheetView: View {
                 // Enhanced gradient background
                 LinearGradient(
                     gradient: Gradient(colors: [
-                        Color("AppPrimaryColor").opacity(0.08),
-                        Color("Accent").opacity(0.05),
-                        Color("PrimaryDark").opacity(0.03)
+                        AppColor.appPrimary.opacity(0.08),
+                        AppColor.accent.opacity(0.05),
+                        AppColor.primaryDark.opacity(0.03)
                     ]),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
@@ -37,11 +37,11 @@ struct ShareSheetView: View {
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .multilineTextAlignment(.center)
-                                .foregroundColor(Color("TextLabel"))
+                                .foregroundColor(AppColor.textLabel)
                             
                             Text("Celebrate your success and inspire others to take on their own challenges")
                                 .font(.body)
-                                .foregroundColor(Color("Subtext"))
+                                .foregroundColor(AppColor.subtext)
                                 .multilineTextAlignment(.center)
                                 .lineSpacing(4)
                                 .padding(.horizontal, 20)
@@ -99,7 +99,7 @@ struct ShareSheetView: View {
                     Button(Constants.Button.done) {
                         dismiss()
                     }
-                    .foregroundColor(Color("AppPrimaryColor"))
+                    .foregroundColor(AppColor.appPrimary)
                     .fontWeight(.semibold)
                 }
             }

@@ -20,14 +20,14 @@ struct ProgressInsightsView: View {
                         Text("Weekly Progress")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("TextLabel"))
+                            .foregroundColor(AppColor.textLabel)
                         
                         WeeklyProgressChart()
                     }
                     .padding(20)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("Card"))
+                            .fill(AppColor.card)
                     )
                     
                     // Challenge Categories
@@ -35,7 +35,7 @@ struct ProgressInsightsView: View {
                         Text("Challenge Categories")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("TextLabel"))
+                            .foregroundColor(AppColor.textLabel)
                         
                         LazyVGrid(columns: [
                             GridItem(.flexible()),
@@ -49,7 +49,7 @@ struct ProgressInsightsView: View {
                     .padding(20)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("Card"))
+                            .fill(AppColor.card)
                     )
                     
                     // Performance Stats
@@ -57,35 +57,35 @@ struct ProgressInsightsView: View {
                         Text("Performance Insights")
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(Color("TextLabel"))
+                            .foregroundColor(AppColor.textLabel)
                         
                         VStack(spacing: 12) {
                             InsightRow(
                                 title: "Best Day",
                                 value: "Wednesday",
                                 icon: "calendar.circle.fill",
-                                color: Color("Success")
+                                color: AppColor.success
                             )
                             
                             InsightRow(
                                 title: "Average Completion Time",
                                 value: "15 minutes",
                                 icon: "clock.fill",
-                                color: Color("Accent")
+                                color: AppColor.accent
                             )
                             
                             InsightRow(
                                 title: "Most Challenging Category",
                                 value: "Mindfulness",
                                 icon: "brain.head.profile",
-                                color: Color("AppPrimaryColor")
+                                color: AppColor.appPrimary
                             )
                         }
                     }
                     .padding(20)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color("Card"))
+                            .fill(AppColor.card)
                     )
                 }
                 .padding(20)

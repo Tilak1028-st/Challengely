@@ -17,7 +17,7 @@ struct SuggestionsView: View {
             Text(Constants.Chat.quickQuestions)
                 .font(.headline)
                 .fontWeight(.semibold)
-                .foregroundColor(Color("TextLabel"))
+                .foregroundColor(AppColor.textLabel)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .opacity(animateButtons ? 1.0 : 0.0)
                 .offset(x: animateButtons ? 0 : -20)
