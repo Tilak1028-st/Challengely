@@ -12,7 +12,7 @@ A beautiful iOS app that generates personalized daily challenges for users based
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Tilak1028-st/Challengely.git
    cd Challengely
    ```
 
