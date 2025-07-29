@@ -20,7 +20,7 @@ struct ChatInputView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 24)
                             .stroke(
-                                isFocused ? Color("PrimaryColor").opacity(0.3) : Color("Divider"),
+                                isFocused ? Color("PrimaryColor").opacity(0.3) : Color.divider,
                                 lineWidth: isFocused ? 1.5 : 1
                             )
                     )
@@ -37,7 +37,7 @@ struct ChatInputView: View {
                     .frame(width: 44, height: 44)
                     .background(
                         messageText.isEmpty 
-                        ? Color("Subtext").opacity(0.3) 
+                        ? Color.subtext.opacity(0.3)
                         : Color("PrimaryColor")
                     )
                     .clipShape(Circle())
@@ -50,7 +50,7 @@ struct ChatInputView: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
         .background(
-            Color("Background")
+            Color.background
                 .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: -2)
         )
     }
