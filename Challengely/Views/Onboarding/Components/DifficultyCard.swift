@@ -34,7 +34,7 @@ struct DifficultyCard: View {
                     
                     Text(difficultyDescription)
                         .font(.subheadline)
-                        .foregroundColor(isSelected ? .white.opacity(0.8) : .subtext)
+                        .foregroundColor(isSelected ? .white.opacity(0.8) : Color("Subtext"))
                         .lineLimit(2)
                 }
                 

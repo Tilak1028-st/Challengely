@@ -21,7 +21,7 @@ struct DifficultyStepView: View {
                 
                 Text("We'll tailor challenges to match your comfort zone")
                     .font(.caption)
-                    .foregroundColor(.subtext)
+                    .foregroundColor(Color("Subtext"))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .lineLimit(2)

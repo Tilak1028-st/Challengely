@@ -10,6 +10,7 @@ import SwiftUI
 struct SuggestionsView: View {
     let suggestions: [ChatSuggestion]
     let onSuggestionTapped: (ChatSuggestion) -> Void
+    @State private var animateButtons = false
     
     var body: some View {
         VStack(spacing: 16) {
@@ -18,12 +19,17 @@ struct SuggestionsView: View {
                 .fontWeight(.semibold)
                 .foregroundColor(Color("TextLabel"))
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .opacity(animateButtons ? 1.0 : 0.0)
+                .offset(x: animateButtons ? 0 : -20)
+                .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1), value: animateButtons)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    ForEach(suggestions) { suggestion in
+                    ForEach(Array(suggestions.enumerated()), id: \.element.id) { index, suggestion in
                         Button(action: {
-                            onSuggestionTapped(suggestion)
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
+                                onSuggestionTapped(suggestion)
+                            }
                         }) {
                             Text(suggestion.text)
                                 .font(.subheadline)
@@ -41,8 +47,14 @@ struct SuggestionsView: View {
                                 )
                         }
                         .buttonStyle(PlainButtonStyle())
-                        .scaleEffect(1.0)
-                        .animation(.easeInOut(duration: 0.2), value: true)
+                        .scaleEffect(animateButtons ? 1.0 : 0.8)
+                        .opacity(animateButtons ? 1.0 : 0.0)
+                        .offset(y: animateButtons ? 0 : 20)
+                        .animation(
+                            .spring(response: 0.6, dampingFraction: 0.7)
+                            .delay(Double(index) * 0.1),
+                            value: animateButtons
+                        )
                     }
                 }
                 .padding(.horizontal, 20)
@@ -50,5 +62,15 @@ struct SuggestionsView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 16)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                    animateButtons = true
+                }
+            }
+        }
+        .onDisappear {
+            animateButtons = false
+        }
     }
 } 

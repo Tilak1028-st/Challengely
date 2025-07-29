@@ -21,7 +21,7 @@ struct InterestsStepView: View {
                 
                 Text("Tap what excites you to get personalized challenges")
                     .font(.caption)
-                    .foregroundColor(.subtext)
+                    .foregroundColor(Color("Subtext"))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .lineLimit(2)

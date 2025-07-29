@@ -1,62 +1,116 @@
 import SwiftUI
+import Foundation
 
 struct ChatInputView: View {
     @EnvironmentObject var obj: Observed
     @Binding var messageText: String
+    @Binding var isExpanded: Bool
+    @Binding var isFocused: Bool
+    let characterLimit: Int
     var onSend: () -> Void
+    
+    @State private var textHeight: CGFloat = 44
 
-    @FocusState private var isFocused: Bool
+    private var characterCount: Int {
+        messageText.count
+    }
+    
+    private var characterCountColor: Color {
+        if characterCount > characterLimit {
+            return Color("ChallengeRed")
+        } else if characterCount > Int(Double(characterLimit) * 0.8) {
+            return Color("Accent")
+        } else {
+            return Color("Subtext")
+        }
+    }
+    
+    private var isOverLimit: Bool {
+        characterCount > characterLimit
+    }
+    
+    private var inputHeight: CGFloat {
+        if messageText.count > 50 || messageText.contains("\n") {
+            return min(max(44, textHeight), 120)
+        } else {
+            return 44
+        }
+    }
 
     var body: some View {
-        HStack(alignment: .bottom, spacing: 12) {
-            ZStack(alignment: .topLeading) {
-                
-                MultiTextField(text: $messageText)
-                    .frame(height: self.obj.size < 120 ? self.obj.size : 120)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 4)
-                    .background(Color("Card"))
-                    .clipShape(RoundedRectangle(cornerRadius: 24))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 24)
-                            .stroke(
-                                isFocused ? Color("PrimaryColor").opacity(0.3) : Color.divider,
-                                lineWidth: isFocused ? 1.5 : 1
-                            )
-                    )
-                    .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
+        VStack(spacing: 8) {
+            // Character counter
+            if characterCount > 0 {
+                HStack {
+                    Spacer()
+                    Text("\(characterCount)/\(characterLimit)")
+                        .font(.caption2)
+                        .foregroundColor(characterCountColor)
+                        .padding(.horizontal, 16)
+                }
             }
+            
+            // Input area
+            HStack(alignment: .bottom, spacing: 12) {
+                ZStack(alignment: .topLeading) {
+                    MultiTextField(text: $messageText)
+                        .frame(height: self.obj.size < 120 ? self.obj.size : 120)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 2)
+                        .background(Color("Card"))
+                        .clipShape(RoundedRectangle(cornerRadius: 24))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 24)
+                                .stroke(
+                                    isFocused ? Color("PrimaryColor").opacity(0.3) : Color("Divider"),
+                                    lineWidth: isFocused ? 1.5 : 1
+                                )
+                        )
+                        .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 1)
+                        
+                }
 
-            Button(action: {
-                onSend()
-                messageText = ""
-            }) {
-                Image(systemName: "arrow.up")
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.white)
-                    .frame(width: 44, height: 44)
-                    .background(
-                        messageText.isEmpty 
-                        ? Color.subtext.opacity(0.3)
-                        : Color("PrimaryColor")
-                    )
-                    .clipShape(Circle())
-                    .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
+                // Send button
+                Button(action: {
+                    if !isOverLimit {
+                        onSend()
+                        messageText = ""
+                        isExpanded = false
+                    }
+                }) {
+                    Image(systemName: "arrow.up")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.white)
+                        .frame(width: 44, height: 44)
+                        .background(
+                            messageText.isEmpty || isOverLimit
+                            ? Color("Subtext").opacity(0.3)
+                            : Color("PrimaryColor")
+                        )
+                        .clipShape(Circle())
+                        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
+                }
+                .disabled(messageText.isEmpty || isOverLimit)
+                .scaleEffect(messageText.isEmpty || isOverLimit ? 0.95 : 1.0)
+                .animation(.easeInOut(duration: 0.2), value: messageText.isEmpty || isOverLimit)
             }
-            .disabled(messageText.isEmpty)
-            .scaleEffect(messageText.isEmpty ? 0.95 : 1.0)
-            .animation(.easeInOut(duration: 0.2), value: messageText.isEmpty)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
         .background(
-            Color.background
+            Color("Background")
                 .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: -2)
         )
     }
 }
 
-
-class Observed: ObservableObject {
-    @Published var size: CGFloat = 0
+#Preview {
+    ChatInputView(
+        messageText: .constant(""),
+        isExpanded: .constant(false),
+        isFocused: .constant(false),
+        characterLimit: 500
+    ) {
+        print("Send tapped")
+    }
 }

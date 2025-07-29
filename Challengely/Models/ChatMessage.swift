@@ -1,7 +1,7 @@
 import Foundation
 
 struct ChatMessage: Identifiable, Codable {
-    let id = UUID()
+    let id: UUID
     let content: String
     let isFromUser: Bool
     let timestamp: Date
@@ -14,9 +14,18 @@ struct ChatMessage: Identifiable, Codable {
     }
     
     init(content: String, isFromUser: Bool, messageType: MessageType = .text) {
+        self.id = UUID()
         self.content = content
         self.isFromUser = isFromUser
         self.timestamp = Date()
+        self.messageType = messageType
+    }
+    
+    init(id: UUID, content: String, isFromUser: Bool, timestamp: Date, messageType: MessageType = .text) {
+        self.id = id
+        self.content = content
+        self.isFromUser = isFromUser
+        self.timestamp = timestamp
         self.messageType = messageType
     }
 }

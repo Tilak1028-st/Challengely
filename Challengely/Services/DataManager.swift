@@ -105,4 +105,11 @@ class DataManager: ObservableObject {
         chatMessages = []
         saveChatMessages()
     }
+    
+    func updateLastMessage(_ message: ChatMessage) {
+        if !chatMessages.isEmpty {
+            chatMessages[chatMessages.count - 1] = message
+            saveChatMessages()
+        }
+    }
 } 

@@ -33,7 +33,7 @@ struct OnboardingView: View {
                         completeOnboarding()
                     }
                     .font(.subheadline)
-                    .foregroundColor(.subtext)
+                    .foregroundColor(Color("Subtext"))
                     .underline()
                     .opacity(showMotivationalText ? 1 : 0)
                     .animation(.easeInOut(duration: 0.5).delay(1.0), value: showMotivationalText)
@@ -81,7 +81,7 @@ struct OnboardingView: View {
                 if showMotivationalText {
                     Text(motivationalText)
                         .font(.caption)
-                        .foregroundColor(.subtext)
+                        .foregroundColor(Color("Subtext"))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 20)
                         .lineLimit(2)
