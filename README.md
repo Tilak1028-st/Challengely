@@ -27,13 +27,17 @@ A beautiful iOS app that generates personalized daily challenges for users based
 
 ## Test Instructions
 
+### Splash Screen
+1. Launch the app and observe the engaging splash screen
+2. Watch the animated waves and floating geometric shapes
+3. Verify smooth transition to main app after 3 seconds
+
 ### Onboarding Flow
-1. Launch the app
-2. Complete the 3-step onboarding:
-   - Welcome screen
+1. Complete the 3-step onboarding:
+   - Welcome screen with motivational quote
    - Select interests (minimum 1 required)
    - Choose difficulty level
-3. Verify smooth transitions and animations
+2. Verify smooth transitions and staggered animations
 
 ### Challenge Experience
 1. After onboarding, view the daily challenge
@@ -70,6 +74,11 @@ Challengely/
 │   ├── DataManager.swift          # Local data persistence
 │   └── ChatService.swift          # Chat logic and responses
 ├── Views/
+│   ├── SplashScreen/
+│   │   ├── SplashScreenView.swift # Engaging launch screen
+│   │   └── Components/
+│   │       ├── WaveShape.swift    # Animated wave shapes
+│   │       └── SplashTriangle.swift # Floating geometric shapes
 │   ├── Onboarding/
 │   │   ├── OnboardingView.swift   # Multi-step onboarding
 │   │   └── Components/            # Onboarding components
@@ -84,12 +93,15 @@ Challengely/
 │   ├── Profile/
 │   │   ├── ProfileView.swift      # User profile and stats
 │   │   └── Components/            # Profile components
-│   ├── MainTabView.swift          # Tab navigation
-│   └── SplashScreenView.swift     # App launch screen
+│   └── MainTabView.swift          # Tab navigation
 ├── Components/
 │   ├── ConfettiView.swift         # Celebration animations
 │   └── MultiTextField.swift       # Custom expandable text input
 ├── Utilities/
+│   ├── Constants.swift            # Centralized constants
+│   │   ├── AppColor               # Color constants
+│   │   ├── SystemImages           # SF Symbols constants
+│   │   └── Text constants         # UI text constants
 │   └── HapticManager.swift        # Haptic feedback
 ├── Extensions/                    # Swift extensions
 ├── Assets.xcassets/               # App assets and colors
@@ -237,4 +249,24 @@ Challengely/
 - **Long Messages**: Character limits with visual feedback
 - **Duplicate Messages**: Prevention of spam with cooldown timers
 - **Empty Messages**: Validation before sending
-- **Network Simulation**: Realistic delays for AI responses 
+- **Network Simulation**: Realistic delays for AI responses
+
+## Code Quality Features
+
+### Centralized Constants
+- **AppColor**: Type-safe color constants for consistent theming
+- **SystemImages**: Centralized SF Symbols for easy maintenance
+- **Text Constants**: Localized strings for internationalization
+- **Magic Numbers**: Eliminated hardcoded values throughout the app
+
+### Splash Screen Features
+- **Animated Waves**: Custom WaveShape with smooth animations
+- **Floating Shapes**: Geometric shapes with physics-based movement
+- **Theme Integration**: Uses app color palette for consistency
+- **Performance Optimized**: Efficient animations with proper cleanup
+
+### Celebration System
+- **ConfettiView**: Advanced particle system with multiple effects
+- **Sparkles & Fireworks**: Elaborate celebration animations
+- **Physics Simulation**: Realistic particle movement and gravity
+- **Performance Optimized**: Efficient rendering with proper cleanup 
